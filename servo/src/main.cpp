@@ -5,9 +5,9 @@
 
 const int goalPos = 2048;
 
-const float kp = 10, ki= 1, kd = 10;
+const float kp = 5, ki= 0.3, kd = 0.01;
 const int winLen = 128;
-const int maxPower = 128; //Running at 9v for now
+const int maxPower = 96; //Running at 9v for now -- don't go above around 128
  
 const int enablePin = PB0;
 const int aPin = PA7;
@@ -47,9 +47,14 @@ void loop()
 
   float avg = total / winLen;
 
-  int power = ( (error * kp) + (avg * ki) + ((error - lastError) / lastTime * kd) ) * (255.0/4096.0);
+  int p = error * kp;
+  int i = avg * ki;
+  int d = float(error - lastError) / float(loopTime) * kd;
 
-  usb.println("P: " + String(error * kp) + " I: " + String(avg * ki) + "D: " + String((error - lastError) / lastTime * kd) );
+  int power =(p + i + d) * (55.0/4096.0);
+
+  usb.println("P: " + String(p) + " I: " + String(i) + "D: " + String(d) );
+  usb.println("Last error: " + String(lastError) + " Current error: " + String(error) + " Last loop time: " + String(loopTime));
 
   lastError = error;
 
