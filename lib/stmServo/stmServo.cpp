@@ -82,7 +82,7 @@ void stmServo::update() {
     usb.println("P: " + String(p) + " I: " + String(i) + "D: " + String(d) );
     usb.println("Last error: " + String(lastError) + " Current error: " + String(error) + " Last loop time: " + String(loopTime));
 
-    power = (p + i + d) * (255.0/2047.0);
+    power = (p + i + d) * (255.0/1023.0); //2047 for stm32, 1023 for most Arduinos
 
     lastError = error;
 

@@ -2,17 +2,24 @@
 
 #include <stmServo.h>
 
-#define LED_BUILTIN PC13
+//#define LED_BUILTIN PC13
 
 using namespace std;
 
 
 const float kp = 10, ki= 7, kd = 2;
  
+/*
 const int enablePin = PB0;
 const int aPin = PA7;
 const int bPin = PA6;
 const int potPin = PB1;
+*/
+
+const int enablePin = 9;
+const int aPin = 8;
+const int bPin = 7;
+const int potPin = A4;
 
 stmServo servo(enablePin, aPin, bPin, potPin, kp, ki, kd);
 
