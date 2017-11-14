@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    139534,       2555]
-NotebookOptionsPosition[    136194,       2481]
-NotebookOutlinePosition[    136537,       2496]
-CellTagsIndexPosition[    136494,       2493]
+NotebookDataLength[     41138,        959]
+NotebookOptionsPosition[     40099,        935]
+NotebookOutlinePosition[     40438,        950]
+CellTagsIndexPosition[     40395,        947]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -251,16 +251,18 @@ Cell[BoxData[{
     RowBox[{"{", 
      RowBox[{
      "\[Theta]h1", ",", "\[Theta]h2", ",", "\[Theta]h3", ",", "\[Theta]h4", 
-      ",", "\[Theta]h5", ",", "\[Theta]h6"}], "}"}]}], ";", 
-   RowBox[{"(*", 
+      ",", "\[Theta]h5", ",", "\[Theta]h6"}], "}"}]}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Horn", " ", "angles"}], ",", " ", 
     RowBox[{
-     RowBox[{"Horn", " ", "angles"}], ",", " ", 
-     RowBox[{
-      RowBox[{"i", ".", "e", ".", " ", "what"}], " ", "the", " ", "motors", 
-      " ", "control"}], ",", " ", 
-     RowBox[{
-     "each", " ", "set", " ", "to", " ", "a", " ", "different", " ", 
-      "unknown"}]}], "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"i", ".", "e", ".", " ", "what"}], " ", "the", " ", "motors", 
+     " ", "control"}], ",", " ", 
+    RowBox[{
+    "each", " ", "set", " ", "to", " ", "a", " ", "different", " ", 
+     "unknown"}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
    RowBox[{"hornLength", "=", "48"}], ";"}], 
   RowBox[{"(*", 
    RowBox[{
@@ -268,37 +270,6 @@ Cell[BoxData[{
     "The", " ", "lever", " ", "arm", " ", "of", " ", "the", " ", "horn"}], 
     ",", " ", 
     RowBox[{"coming", " ", "off", " ", "the", " ", "spline"}]}], 
-   "*)"}]}], "\[IndentingNewLine]", 
- RowBox[{"hornRelPos", ":=", 
-  RowBox[{
-   RowBox[{
-    RowBox[{"J", "[", 
-     RowBox[{
-      RowBox[{
-       RowBox[{"RotationMatrix", "[", 
-        RowBox[{"#", ",", "i"}], "]"}], ".", 
-       RowBox[{"(", 
-        RowBox[{"k", "*", "hornLength"}], ")"}]}], ",", 
-      RowBox[{"{", "1", "}"}]}], "]"}], "&"}], "/@", 
-   "\[Theta]h"}]}], "\[IndentingNewLine]", 
- RowBox[{"hornRelPos", "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{"hornPos1", ":=", 
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{"RotationMatrix", "[", 
-        RowBox[{
-         RowBox[{"-", "\[Theta]h1"}], ",", "i"}], "]"}], ".", 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"-", "j"}], "*", "hornLength"}], ")"}]}], 
-      "\[IndentingNewLine]", "hornPos2"}], ":=", 
-     RowBox[{
-      RowBox[{"RotationMatrix", "[", 
-       RowBox[{"\[Theta]h2", ",", "i"}], "]"}], ".", 
-      RowBox[{"(", 
-       RowBox[{"j", "*", "hornLength"}], ")"}]}]}]}], 
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"hornPosEven", ":=", 
@@ -333,30 +304,13 @@ Cell[BoxData[{
       RowBox[{"-", "\[Theta]h1"}], ",", 
       RowBox[{"-", "\[Theta]h3"}], ",", 
       RowBox[{"-", "\[Theta]h5"}]}], "}"}]}]}], ";"}], "\[IndentingNewLine]", 
+
  RowBox[{
-  RowBox[{"hornRelPos", " ", "=", " ", 
-   RowBox[{"Join", "[", 
-    RowBox[{
-     RowBox[{"List", "[", " ", 
-      RowBox[{"hornPosOdd", " ", "[", 
-       RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", " ", 
-     RowBox[{"List", "[", 
-      RowBox[{"hornPosEven", "[", 
-       RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
-     RowBox[{"List", "[", 
-      RowBox[{"hornPosOdd", " ", "[", 
-       RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", " ", 
-     RowBox[{"List", "[", 
-      RowBox[{"hornPosEven", "[", 
-       RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
-     RowBox[{"List", "[", 
-      RowBox[{"hornPosOdd", " ", "[", 
-       RowBox[{"[", "3", "]"}], "]"}], "]"}], ",", " ", 
-     RowBox[{"List", "[", 
-      RowBox[{"hornPosEven", "[", 
-       RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{"hornRelPos", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"hornRelPos", "=", 
+    RowBox[{"Riffle", "[", 
+     RowBox[{"hornPosOdd", ",", "hornPosEven"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{"Including", " ", "ones", " ", "because", " ", 
     RowBox[{"positions", ".", " ", "I"}], " ", "think", " ", "we", " ", 
@@ -386,45 +340,65 @@ Cell[BoxData[{
     RowBox[{"centers", ".", " ", "Also"}], " ", "rotates", " ", "the", " ", 
     "servo", " ", "indices", " ", "by", " ", 
     RowBox[{"one", "."}]}], "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"ListPointPlot3D", "[", 
+  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Show", "[", 
+     RowBox[{"{", "\[IndentingNewLine]", 
       RowBox[{
-       RowBox[{"(", 
+       RowBox[{"ListPointPlot3D", "[", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"#", "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", ";;", "3"}], "]"}], "]"}], ")"}], "&"}], "/@", 
+             "Xbl"}], ")"}], "/.", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\[Theta]h1", "\[Rule]", "\[Theta]2"}], ",", 
+             RowBox[{"\[Theta]h2", "\[Rule]", "\[Theta]2"}], ",", 
+             RowBox[{"\[Theta]h3", "\[Rule]", "\[Theta]2"}], ",", 
+             RowBox[{"\[Theta]h4", "\[Rule]", "\[Theta]2"}], ",", 
+             RowBox[{"\[Theta]h5", "\[Rule]", "\[Theta]2"}], ",", 
+             RowBox[{"\[Theta]h6", "\[Rule]", "\[Theta]2"}]}], "}"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\[Theta]2", ",", "0", ",", 
+            RowBox[{"2", "\[Pi]"}], ",", 
+            RowBox[{"2", 
+             RowBox[{"\[Pi]", "/", "40"}]}]}], "}"}]}], "]"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ListPointPlot3D", "[", 
         RowBox[{
          RowBox[{
           RowBox[{"(", 
-           RowBox[{"#", "[", 
-            RowBox[{"[", 
-             RowBox[{"1", ";;", "3"}], "]"}], "]"}], ")"}], "&"}], "/@", 
-         "Xbl"}], ")"}], "/.", 
-       RowBox[{"\[Theta]h1", "\[Rule]", "\[Theta]"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"{", 
-      RowBox[{"\[Theta]", ",", 
-       RowBox[{"-", "\[Pi]"}], ",", "\[Pi]"}], "}"}]}], "\[IndentingNewLine]",
-     "]"}], "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{"ListPointPlot3D", "[", 
-    RowBox[{"Table", "[", 
-     RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", 
+                RowBox[{"1", ";;", "3"}], "]"}], "]"}], ")"}], "&"}], "/@", 
+            "Xbl"}], ")"}], "/.", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"\[Theta]h1", "\[Rule]", "\[Theta]"}], ",", 
+            RowBox[{"\[Theta]h2", "\[Rule]", "\[Theta]"}], ",", 
+            RowBox[{"\[Theta]h3", "\[Rule]", "\[Theta]"}], ",", 
+            RowBox[{"\[Theta]h4", "\[Rule]", "\[Theta]"}], ",", 
+            RowBox[{"\[Theta]h5", "\[Rule]", "\[Theta]"}], ",", 
+            RowBox[{"\[Theta]h6", "\[Rule]", "\[Theta]"}]}], "}"}]}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", 
+          RowBox[{"PointSize", "[", "Medium", "]"}]}]}], "]"}]}], 
+      "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"\[Theta]", ",", 
       RowBox[{
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{
-          RowBox[{"(", 
-           RowBox[{"#", "[", 
-            RowBox[{"[", 
-             RowBox[{"1", ";;", "3"}], "]"}], "]"}], ")"}], "&"}], "/@", 
-         "Xbl"}], ")"}], "/.", 
-       RowBox[{"\[Theta]h1", "\[Rule]", "\[Theta]"}]}], ",", 
-      RowBox[{"{", 
-       RowBox[{"\[Theta]", ",", "0", ",", 
-        RowBox[{"2", "\[Pi]"}], ",", 
-        RowBox[{"2", 
-         RowBox[{"\[Pi]", "/", "40"}]}]}], "}"}]}], "]"}], "]"}], 
-   "*)"}]}]}], "Input",
+       RowBox[{"-", "\[Pi]"}], "/", "2"}], ",", 
+      RowBox[{"\[Pi]", "/", "2"}]}], "}"}]}], "\[IndentingNewLine]", 
+   "]"}]}]}], "Input",
  CellChangeTimes->{{3.7184706748322353`*^9, 3.718470756388507*^9}, 
    3.718470932591627*^9, {3.7184712937388487`*^9, 3.7184713586285877`*^9}, {
    3.71847155978574*^9, 3.718471584896755*^9}, {3.718471659840567*^9, 
@@ -456,97 +430,76 @@ Cell[BoxData[{
    3.7196685013460627`*^9}, {3.7196685386353426`*^9, 3.719668585495677*^9}, {
    3.7196687134324665`*^9, 3.719668726788208*^9}, {3.719668786467697*^9, 
    3.7196688382902317`*^9}, {3.7196688776156683`*^9, 3.719668924049456*^9}, {
-   3.719669033757292*^9, 
-   3.719669075059808*^9}},ExpressionUUID->"d2385fae-b865-4f0e-a8da-\
+   3.719669033757292*^9, 3.719669075059808*^9}, {3.719682604160721*^9, 
+   3.719682604789741*^9}, {3.719683423105319*^9, 3.7196834234098587`*^9}, {
+   3.719683459109549*^9, 3.7196835259858103`*^9}, {3.7196843592217007`*^9, 
+   3.7196844131548233`*^9}, {3.719684670806004*^9, 3.719684745733385*^9}, {
+   3.719684801218038*^9, 3.719684816206616*^9}, {3.719685950153821*^9, 
+   3.719685957589881*^9}, {3.719686010978208*^9, 3.719686070661112*^9}, {
+   3.719686140507304*^9, 
+   3.7196861916862698`*^9}},ExpressionUUID->"d2385fae-b865-4f0e-a8da-\
 a3bd89a1e040"],
 
 Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"0", ",", 
-     RowBox[{
-      RowBox[{"-", "48"}], " ", 
-      RowBox[{"Sin", "[", "\[Theta]h1", "]"}]}], ",", 
-     RowBox[{"48", " ", 
-      RowBox[{"Cos", "[", "\[Theta]h1", "]"}]}], ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", 
-     RowBox[{
-      RowBox[{"-", "48"}], " ", 
-      RowBox[{"Sin", "[", "\[Theta]h2", "]"}]}], ",", 
-     RowBox[{"48", " ", 
-      RowBox[{"Cos", "[", "\[Theta]h2", "]"}]}], ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", 
-     RowBox[{
-      RowBox[{"-", "48"}], " ", 
-      RowBox[{"Sin", "[", "\[Theta]h3", "]"}]}], ",", 
-     RowBox[{"48", " ", 
-      RowBox[{"Cos", "[", "\[Theta]h3", "]"}]}], ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", 
-     RowBox[{
-      RowBox[{"-", "48"}], " ", 
-      RowBox[{"Sin", "[", "\[Theta]h4", "]"}]}], ",", 
-     RowBox[{"48", " ", 
-      RowBox[{"Cos", "[", "\[Theta]h4", "]"}]}], ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", 
-     RowBox[{
-      RowBox[{"-", "48"}], " ", 
-      RowBox[{"Sin", "[", "\[Theta]h5", "]"}]}], ",", 
-     RowBox[{"48", " ", 
-      RowBox[{"Cos", "[", "\[Theta]h5", "]"}]}], ",", "1"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"0", ",", 
-     RowBox[{
-      RowBox[{"-", "48"}], " ", 
-      RowBox[{"Sin", "[", "\[Theta]h6", "]"}]}], ",", 
-     RowBox[{"48", " ", 
-      RowBox[{"Cos", "[", "\[Theta]h6", "]"}]}], ",", "1"}], "}"}]}], 
-  "}"}]], "Output",
- CellChangeTimes->{{3.7196683364844027`*^9, 3.7196683420873747`*^9}, 
-   3.719668588353669*^9, {3.719668719688695*^9, 3.7196687329057693`*^9}, 
-   3.7196687989615726`*^9, {3.719668928566509*^9, 
-   3.7196689529510903`*^9}},ExpressionUUID->"f44f1d42-3033-416c-9dcd-\
-b3ebdf0e13cb"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"0", ",", 
-   RowBox[{
-    RowBox[{"-", "48"}], " ", 
-    RowBox[{"Cos", "[", "\[Theta]h1", "]"}]}], ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Sin", "[", "\[Theta]h1", "]"}]}], ",", "1", ",", "0", ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Cos", "[", "\[Theta]h2", "]"}]}], ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Sin", "[", "\[Theta]h2", "]"}]}], ",", "1", ",", "0", ",", 
-   RowBox[{
-    RowBox[{"-", "48"}], " ", 
-    RowBox[{"Cos", "[", "\[Theta]h3", "]"}]}], ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Sin", "[", "\[Theta]h3", "]"}]}], ",", "1", ",", "0", ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Cos", "[", "\[Theta]h4", "]"}]}], ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Sin", "[", "\[Theta]h4", "]"}]}], ",", "1", ",", "0", ",", 
-   RowBox[{
-    RowBox[{"-", "48"}], " ", 
-    RowBox[{"Cos", "[", "\[Theta]h5", "]"}]}], ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Sin", "[", "\[Theta]h5", "]"}]}], ",", "1", ",", "0", ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Cos", "[", "\[Theta]h6", "]"}]}], ",", 
-   RowBox[{"48", " ", 
-    RowBox[{"Sin", "[", "\[Theta]h6", "]"}]}], ",", "1"}], "}"}]], "Output",
- CellChangeTimes->{{3.7196683364844027`*^9, 3.7196683420873747`*^9}, 
-   3.719668588353669*^9, {3.719668719688695*^9, 3.7196687329057693`*^9}, 
-   3.7196687989615726`*^9, {3.719668928566509*^9, 
-   3.719668952957106*^9}},ExpressionUUID->"e24a2757-d73f-44ea-9840-\
-c91ace77f31f"]
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Theta]$$ = -0.08168140899333454, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`\[Theta]$$], Rational[-1, 2] Pi, Rational[1, 2] Pi}}, 
+    Typeset`size$$ = {360., {143., 146.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Theta]$272284$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Theta]$$ = Rational[-1, 2] Pi}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Theta]$$, $CellContext`\[Theta]$272284$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[{
+         ListPointPlot3D[
+          Table[
+           ReplaceAll[
+            Map[Part[#, 
+              Span[
+              1, 3]]& , $CellContext`Xbl], {$CellContext`\[Theta]h1 -> \
+$CellContext`\[Theta]2, $CellContext`\[Theta]h2 -> $CellContext`\[Theta]2, \
+$CellContext`\[Theta]h3 -> $CellContext`\[Theta]2, $CellContext`\[Theta]h4 -> \
+$CellContext`\[Theta]2, $CellContext`\[Theta]h5 -> $CellContext`\[Theta]2, \
+$CellContext`\[Theta]h6 -> $CellContext`\[Theta]2}], {$CellContext`\[Theta]2, 
+            0, 2 Pi, 2 (Pi/40)}]], 
+         ListPointPlot3D[
+          ReplaceAll[
+           Map[Part[#, 
+             Span[
+             1, 3]]& , $CellContext`Xbl], {$CellContext`\[Theta]h1 -> \
+$CellContext`\[Theta]$$, $CellContext`\[Theta]h2 -> $CellContext`\[Theta]$$, \
+$CellContext`\[Theta]h3 -> $CellContext`\[Theta]$$, $CellContext`\[Theta]h4 -> \
+$CellContext`\[Theta]$$, $CellContext`\[Theta]h5 -> $CellContext`\[Theta]$$, \
+$CellContext`\[Theta]h6 -> $CellContext`\[Theta]$$}], PlotStyle -> 
+          PointSize[Medium]]}], 
+      "Specifications" :> {{$CellContext`\[Theta]$$, Rational[-1, 2] Pi, 
+         Rational[1, 2] Pi}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{407., {187., 192.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.719685959702807*^9, {3.719686048174033*^9, 3.719686072584062*^9}, 
+   3.7196861079966297`*^9, 3.71968614285043*^9, {3.7196861829353037`*^9, 
+   3.719686192973382*^9}},ExpressionUUID->"9d8b25bc-7eea-474f-bc42-\
+8d5e43863bdb"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -581,19 +534,6 @@ Cell[BoxData[
     RowBox[{"Position", " ", "is", " ", "likewise", " ", "unknown"}], "*)"}], 
    "*)"}], "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{
-    RowBox[{"\[Theta]y", ":=", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
-       RowBox[{"{", 
-        RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], ";"}], 
-   RowBox[{"(*", 
-    RowBox[{
-     RowBox[{"it", "'"}], "s", " ", "flat"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"\[Theta]y", "=", 
      RowBox[{"RollPitchYawMatrix", "[", 
@@ -640,8 +580,10 @@ Cell[BoxData[
    3.719666003192688*^9, 3.7196660207190037`*^9}, {3.719666551800705*^9, 
    3.7196665531531253`*^9}, {3.719667143369455*^9, 3.7196671774371943`*^9}, {
    3.7196672253308225`*^9, 3.7196672261536765`*^9}, {3.719667307996651*^9, 
-   3.7196673088438005`*^9}, {3.719667341729102*^9, 
-   3.7196673422384515`*^9}},ExpressionUUID->"02d41fc8-aec8-41f6-82f8-\
+   3.7196673088438005`*^9}, {3.719667341729102*^9, 3.7196673422384515`*^9}, 
+   3.719683539622939*^9, {3.7196842604053593`*^9, 3.7196842923736343`*^9}, {
+   3.719684770248928*^9, 
+   3.719684770743916*^9}},ExpressionUUID->"02d41fc8-aec8-41f6-82f8-\
 93e7b05f0597"],
 
 Cell[BoxData[
@@ -666,6 +608,7 @@ Cell[BoxData[
   RowBox[{
    RowBox[{
     RowBox[{"ballToCenterSpacing", "=", "50"}], ";"}], "\[IndentingNewLine]", 
+   
    RowBox[{
     RowBox[{"ballToBallSpacing", "=", "24"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{
@@ -739,63 +682,63 @@ Cell[BoxData[
            RowBox[{"{", "1", "}"}]}], "]"}], "&"}], "/@", 
         RowBox[{"J", "[", 
          RowBox[{"bhThirdPair", ",", "bhFirstPair", ",", "bhSecondPair"}], 
-         "]"}]}], ")"}]}]}], ";", 
-    RowBox[{"(*", 
+         "]"}]}], ")"}]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Careful", " ", "ordering"}], ",", " ", 
      RowBox[{
-      RowBox[{"Careful", " ", "ordering"}], ",", " ", 
-      RowBox[{
-      "so", " ", "they", " ", "to", " ", "line", " ", "up", " ", "with", " ", 
-       "the", " ", "bottom", " ", "ball", " ", "positions", " ", "in", " ", 
-       "terms", " ", "of", " ", 
-       RowBox[{"order", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
-    RowBox[{"(*", 
+     "so", " ", "they", " ", "to", " ", "line", " ", "up", " ", "with", " ", 
+      "the", " ", "bottom", " ", "ball", " ", "positions", " ", "in", " ", 
+      "terms", " ", "of", " ", 
+      RowBox[{"order", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
      RowBox[{
-      RowBox[{
-       RowBox[{"y", "[", 
-        RowBox[{"[", "1", "]"}], "]"}], ".", 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"J", "[", 
-             RowBox[{"#", ",", 
-              RowBox[{"{", "1", "}"}]}], "]"}], "&"}], "/@", 
-           RowBox[{"J", "[", 
-            RowBox[{"bhFirstPair", ",", "bhSecondPair", ",", "bhThirdPair"}], 
-            "]"}]}], ")"}], "[", 
-         RowBox[{"[", "1", "]"}], "]"}], ")"}]}], "\[IndentingNewLine]", 
-      RowBox[{"y", ".", 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"(", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"J", "[", 
-             RowBox[{"#", ",", 
-              RowBox[{"{", "1", "}"}]}], "]"}], "&"}], "/@", 
-           RowBox[{"J", "[", 
-            RowBox[{"bhFirstPair", ",", "bhSecondPair", ",", "bhThirdPair"}], 
-            "]"}]}], ")"}], "[", 
-         RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}], "*)"}], 
-    "\[IndentingNewLine]", 
-    RowBox[{"(*", 
-     RowBox[{"ListPointPlot3D", "[", 
-      RowBox[{
+      RowBox[{"y", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ".", 
+      RowBox[{"(", 
        RowBox[{
         RowBox[{"(", 
-         RowBox[{"#", "[", 
-          RowBox[{"[", 
-           RowBox[{"1", ";;", "3"}], "]"}], "]"}], ")"}], "&"}], "/@", 
-       RowBox[{"J", "[", 
-        RowBox[{
-         RowBox[{"Xs", "[", 
-          RowBox[{"[", 
-           RowBox[{"1", ";;", "6"}], "]"}], "]"}], ",", 
-         RowBox[{"Xbh", "[", 
-          RowBox[{"[", 
-           RowBox[{"1", ";;", "6"}], "]"}], "]"}]}], "]"}]}], "]"}], 
-     "*)"}]}]}]}]], "Input",
+         RowBox[{
+          RowBox[{
+           RowBox[{"J", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"{", "1", "}"}]}], "]"}], "&"}], "/@", 
+          RowBox[{"J", "[", 
+           RowBox[{"bhFirstPair", ",", "bhSecondPair", ",", "bhThirdPair"}], 
+           "]"}]}], ")"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ")"}]}], "\[IndentingNewLine]", 
+     RowBox[{"y", ".", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"J", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"{", "1", "}"}]}], "]"}], "&"}], "/@", 
+          RowBox[{"J", "[", 
+           RowBox[{"bhFirstPair", ",", "bhSecondPair", ",", "bhThirdPair"}], 
+           "]"}]}], ")"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ")"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"ListPointPlot3D", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"#", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ";;", "3"}], "]"}], "]"}], ")"}], "&"}], "/@", 
+      RowBox[{"J", "[", 
+       RowBox[{
+        RowBox[{"Xs", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ";;", "6"}], "]"}], "]"}], ",", 
+        RowBox[{"Xbh", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ";;", "6"}], "]"}], "]"}]}], "]"}]}], "]"}], 
+    "*)"}]}]}]], "Input",
  CellChangeTimes->CompressedData["
 1:eJwdyltI03EAxfFpLS+LtHIYqaUkPqxtWJkDp8nUIAeZji6uKGVmlLO5iY62
 MkvnDXRE5EQzjHkZWK1hcxWFqLOmETliiFqW6ZrpXEZue4ikfuf/cPjA4Rsn
@@ -852,8 +795,8 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"(", 
         RowBox[{
-         RowBox[{"Pi", "/", "2"}], "\[LessEqual]", "#", "\[LessEqual]", 
-         "Pi"}], ")"}], "&"}], "/@", 
+         RowBox[{"\[Pi]", "/", "2"}], "\[LessEqual]", "#", "\[LessEqual]", 
+         "\[Pi]"}], ")"}], "&"}], "/@", 
       RowBox[{"{", 
        RowBox[{"\[Theta]h2", ",", "\[Theta]h4", ",", "\[Theta]h6"}], "}"}]}], 
      ",", 
@@ -861,87 +804,13 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"(", 
         RowBox[{"0", "\[LessEqual]", "#", "\[LessEqual]", 
-         RowBox[{"Pi", "/", "2"}]}], ")"}], "&"}], "/@", 
+         RowBox[{"\[Pi]", "/", "2"}]}], ")"}], "&"}], "/@", 
       RowBox[{"{", 
        RowBox[{"\[Theta]h1", ",", "\[Theta]h3", ",", "\[Theta]h5"}], 
        "}"}]}]}], "]"}]}], 
   RowBox[{"(*", 
    RowBox[{"Rotation", " ", "limits"}], "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"constraints", "=", 
-   RowBox[{"J", "[", 
-    RowBox[{"rodConstraints", ",", "servoAngleConstraints"}], "]"}]}], ";", 
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{
-     RowBox[{"Note", " ", "the"}], " ", "="}], ",", " ", 
-    RowBox[{"not", " ", ":="}]}], "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{"Solve", "[", 
-    RowBox[{
-     RowBox[{"J", "[", 
-      RowBox[{"rodConstraints", ",", "servoAngleConstraints"}], "]"}], ",", 
-     RowBox[{"(*", 
-      RowBox[{"{", 
-       RowBox[{
-       "\[Theta]h1", ",", "\[Theta]h2", ",", "\[Theta]h3", ",", "\[Theta]h4", 
-        ",", "\[Theta]h5", ",", "\[Theta]h6"}], "}"}], "*)"}], "\[Theta]h1"}],
-     "]"}], "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{"solns", "=", 
-    RowBox[{"Solve", "[", 
-     RowBox[{"constraints", ",", 
-      RowBox[{"{", 
-       RowBox[{
-       "\[Theta]h1", ",", "\[Theta]h2", ",", "\[Theta]h3", ",", "\[Theta]h4", 
-        ",", "\[Theta]h5", ",", "\[Theta]h6"}], "}"}]}], "]"}]}], "*)"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{
-     "\[Theta]h1", ",", "\[Theta]h2", ",", "\[Theta]h3", ",", "\[Theta]h4", 
-      ",", "\[Theta]h5", ",", "\[Theta]h6"}], "}"}], "/.", 
-    RowBox[{"solns", "[", 
-     RowBox[{"[", "1", "]"}], "]"}]}], "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-    RowBox[{"solns", "=", 
-     RowBox[{"FindRoot", "[", 
-      RowBox[{"rodConstraints", ",", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h1", ",", 
-           RowBox[{
-            RowBox[{"-", "\[Pi]"}], "/", "2"}]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h2", ",", 
-           RowBox[{"\[Pi]", "/", "2"}]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h3", ",", 
-           RowBox[{
-            RowBox[{"-", "\[Pi]"}], "/", "2"}]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h4", ",", 
-           RowBox[{"\[Pi]", "/", "2"}]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h5", ",", 
-           RowBox[{
-            RowBox[{"-", "\[Pi]"}], "/", "2"}]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h6", ",", 
-           RowBox[{"\[Pi]", "/", "2"}]}], "}"}]}], "}"}]}], "]"}]}], ";", 
-    "\[IndentingNewLine]", 
-    RowBox[{
-     RowBox[{"(", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{
-        "\[Theta]h1", ",", "\[Theta]h2", ",", "\[Theta]h3", ",", "\[Theta]h4",
-          ",", "\[Theta]h5", ",", "\[Theta]h6"}], "}"}], "/.", "solns"}], 
-      ")"}], "*", 
-     RowBox[{"180", "/", "\[Pi]"}]}]}], "*)"}], "\[IndentingNewLine]", 
   RowBox[{"solns", "=", 
    RowBox[{"FindRoot", "[", 
     RowBox[{"rodConstraints", ",", 
@@ -949,22 +818,22 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{"{", 
         RowBox[{"\[Theta]h1", ",", 
-         RowBox[{"Pi", "/", "2"}]}], "}"}], ",", 
+         RowBox[{"\[Pi]", "/", "2"}]}], "}"}], ",", 
        RowBox[{"{", 
         RowBox[{"\[Theta]h2", ",", 
-         RowBox[{"Pi", "/", "2"}]}], "}"}], ",", 
+         RowBox[{"\[Pi]", "/", "2"}]}], "}"}], ",", 
        RowBox[{"{", 
         RowBox[{"\[Theta]h3", ",", 
-         RowBox[{"Pi", "/", "2"}]}], "}"}], ",", 
+         RowBox[{"\[Pi]", "/", "2"}]}], "}"}], ",", 
        RowBox[{"{", 
         RowBox[{"\[Theta]h4", ",", 
-         RowBox[{"Pi", "/", "2"}]}], "}"}], ",", 
+         RowBox[{"\[Pi]", "/", "2"}]}], "}"}], ",", 
        RowBox[{"{", 
         RowBox[{"\[Theta]h5", ",", 
-         RowBox[{"Pi", "/", "2"}]}], "}"}], ",", 
+         RowBox[{"\[Pi]", "/", "2"}]}], "}"}], ",", 
        RowBox[{"{", 
         RowBox[{"\[Theta]h6", ",", 
-         RowBox[{"Pi", "/", "2"}]}], "}"}]}], "}"}]}], "]"}]}], 
+         RowBox[{"\[Pi]", "/", "2"}]}], "}"}]}], "}"}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"(", 
@@ -1039,1432 +908,16 @@ Cell[BoxData[{
    3.719666653128639*^9}, {3.719666708409171*^9, 3.7196667959499145`*^9}, {
    3.7196668659092655`*^9, 3.7196668692619925`*^9}, {3.7196670325482597`*^9, 
    3.71966704560991*^9}, {3.7196672951539116`*^9, 3.719667295624095*^9}, {
-   3.719667333197652*^9, 
-   3.7196673336826277`*^9}},ExpressionUUID->"6deb5256-3a3b-4432-b19b-\
+   3.719667333197652*^9, 3.7196673336826277`*^9}, {3.7196835614858837`*^9, 
+   3.719683587259962*^9}},ExpressionUUID->"6deb5256-3a3b-4432-b19b-\
 c5eecf7de331"],
 
 Cell[BoxData[
- TemplateBox[{
-  "MapThread","mptc",
-   "\"Incompatible dimensions of objects at positions {2, \\!\\(\\*RowBox[{\\\
-\"1\\\"}]\\)} and {2, \\!\\(\\*RowBox[{\\\"2\\\"}]\\)} of \\!\\(\\*RowBox[{\\\
-\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", FractionBox[\\\"75\\\", \\\"2\\\
-\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \
-\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\); dimensions are \
-\\!\\(\\*RowBox[{\\\"6\\\"}]\\) and \\!\\(\\*RowBox[{\\\"24\\\"}]\\).\"",2,
-   449,133,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668937595335*^9},ExpressionUUID->"55ced4a4-be95-471e-a9a6-\
-ed0fd0a84777"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread","mptc",
-   "\"Incompatible dimensions of objects at positions {2, \\!\\(\\*RowBox[{\\\
-\"1\\\"}]\\)} and {2, \\!\\(\\*RowBox[{\\\"2\\\"}]\\)} of \\!\\(\\*RowBox[{\\\
-\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", FractionBox[\\\"75\\\", \\\"2\\\
-\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \
-\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\); dimensions are \
-\\!\\(\\*RowBox[{\\\"6\\\"}]\\) and \\!\\(\\*RowBox[{\\\"24\\\"}]\\).\"",2,
-   449,134,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689376379466`*^9},ExpressionUUID->"82c045fb-fbdb-4c37-ae50-\
-deb49a74dbe9"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread","mptc",
-   "\"Incompatible dimensions of objects at positions {2, \\!\\(\\*RowBox[{\\\
-\"1\\\"}]\\)} and {2, \\!\\(\\*RowBox[{\\\"2\\\"}]\\)} of \\!\\(\\*RowBox[{\\\
-\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", FractionBox[\\\"75\\\", \\\"2\\\
-\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \
-\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\); dimensions are \
-\\!\\(\\*RowBox[{\\\"6\\\"}]\\) and \\!\\(\\*RowBox[{\\\"24\\\"}]\\).\"",2,
-   449,135,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668937670535*^9},ExpressionUUID->"cac102b4-e717-4b79-b3f0-\
-0fa062855eb4"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"MapThread\\\", \\\"::\\\
-\", \\\"mptc\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
-calculation.\"",2,449,136,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689377056265`*^9},ExpressionUUID->"953762d0-b748-4771-882b-\
-ad06c47ec8cb"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"3\\\"}]\\) of \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-FractionBox[\\\"75\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\
-\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", RowBox[{\\\"35\\\", \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \
-\\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\
-\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \
-\\\"+\\\", RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
-\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) does not exist.\"",2,449,137,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689377271843`*^9},ExpressionUUID->"78c0253f-43e7-4580-88af-\
-f92434a1114c"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"4\\\"}]\\) of \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-FractionBox[\\\"75\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\
-\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", RowBox[{\\\"35\\\", \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \
-\\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\
-\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \
-\\\"+\\\", RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
-\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) does not exist.\"",2,449,138,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668937759771*^9},ExpressionUUID->"9f72a23d-3b93-407d-8fec-\
-260cccbdd58a"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"5\\\"}]\\) of \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-FractionBox[\\\"75\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\
-\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", RowBox[{\\\"35\\\", \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \
-\\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\
-\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \
-\\\"+\\\", RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
-\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) does not exist.\"",2,449,139,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689377953653`*^9},ExpressionUUID->"397641e5-285d-48ce-a18b-\
-a6b79e33f2e0"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Part\\\", \\\"::\\\", \
-\\\"partw\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
-calculation.\"",2,449,140,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689378289547`*^9},ExpressionUUID->"6c2be16a-91a7-4156-8a56-\
-efd3ca326594"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","nlnum",
-   "\"The function value \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\
-\\\"-\\\", \\\"248.`\\\"}], \\\"+\\\", \
-SqrtBox[RowBox[{SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"290.`\\\"}], \\\"+\\\", \\\"Dot\\\"}], \\\"]\\\
-\"}], \\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"36.035699113967404`\\\"}], \\\"+\\\", \
-\\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", RowBox[{RowBox[{\\\"-\\\", \
-\\\"1.`\\\"}], \\\"+\\\", \\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"34.66162704443646`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\
-\\\", \\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"]}]]}], \\\",\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"4\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"248.`\\\"}], \\\"+\\\", \
-SqrtBox[RowBox[{SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"290.`\\\"}], \\\"+\\\", RowBox[{\\\"Part\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", RowBox[{RowBox[{\\\"-\\\", \
-\\\"1.`\\\"}], \\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
-\"]\\\"}], \\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\
-\", RowBox[{RowBox[{\\\"34.66162704443646`\\\", \\\"\[VeryThinSpace]\\\"}], \
-\\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"]\\\"}], \
-\\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"36.035699113967404`\\\", \\\"\[VeryThinSpace]\\\"}], \
-\\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"]\\\"}], \
-\\\"2\\\"]}]]}]}], \\\"}\\\"}]\\) is not a list of numbers with dimensions \
-\\!\\(\\*RowBox[{\\\"{\\\", \\\"6\\\", \\\"}\\\"}]\\) at \
-\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"\[Theta]h1\\\", \\\",\\\", \\\"\
-\[Theta]h2\\\", \\\",\\\", \\\"\[Theta]h3\\\", \\\",\\\", \\\"\[Theta]h4\\\", \
-\\\",\\\", \\\"\[Theta]h5\\\", \\\",\\\", \\\"\[Theta]h6\\\"}], \
-\\\"}\\\"}]\\) = \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"1.5707963267948966`\\\", \\\",\\\", \\\"1.5707963267948966`\\\", \
-\\\",\\\", \\\"1.5707963267948966`\\\", \\\",\\\", \
-\\\"1.5707963267948966`\\\", \\\",\\\", \\\"1.5707963267948966`\\\", \
-\\\",\\\", \\\"1.5707963267948966`\\\"}], \\\"}\\\"}]\\).\"",2,449,141,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689378480053`*^9},ExpressionUUID->"47e070b9-dc1c-46e7-8f9d-\
-c2e7265e1cd3"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","nlnum",
-   "\"The function value \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\
-\\\"-\\\", \\\"248.`\\\"}], \\\"+\\\", \
-SqrtBox[RowBox[{SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"290.`\\\"}], \\\"+\\\", \\\"Dot\\\"}], \\\"]\\\
-\"}], \\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"36.035699113967404`\\\"}], \\\"+\\\", \
-\\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", RowBox[{RowBox[{\\\"-\\\", \
-\\\"1.`\\\"}], \\\"+\\\", \\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"34.66162704443646`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\
-\\\", \\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"]}]]}], \\\",\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"4\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"248.`\\\"}], \\\"+\\\", \
-SqrtBox[RowBox[{SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"290.`\\\"}], \\\"+\\\", RowBox[{\\\"Part\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", RowBox[{RowBox[{\\\"-\\\", \
-\\\"1.`\\\"}], \\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
-\"]\\\"}], \\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\
-\", RowBox[{RowBox[{\\\"34.66162704443646`\\\", \\\"\[VeryThinSpace]\\\"}], \
-\\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"]\\\"}], \
-\\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"36.035699113967404`\\\", \\\"\[VeryThinSpace]\\\"}], \
-\\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"]\\\"}], \
-\\\"2\\\"]}]]}]}], \\\"}\\\"}]\\) is not a list of numbers with dimensions \
-\\!\\(\\*RowBox[{\\\"{\\\", \\\"6\\\", \\\"}\\\"}]\\) at \
-\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"\[Theta]h1\\\", \\\",\\\", \\\"\
-\[Theta]h2\\\", \\\",\\\", \\\"\[Theta]h3\\\", \\\",\\\", \\\"\[Theta]h4\\\", \
-\\\",\\\", \\\"\[Theta]h5\\\", \\\",\\\", \\\"\[Theta]h6\\\"}], \
-\\\"}\\\"}]\\) = \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"1.5707963267948966`\\\", \\\",\\\", \\\"1.5707963267948966`\\\", \
-\\\",\\\", \\\"1.5707963267948966`\\\", \\\",\\\", \
-\\\"1.5707963267948966`\\\", \\\",\\\", \\\"1.5707963267948966`\\\", \
-\\\",\\\", \\\"1.5707963267948966`\\\"}], \\\"}\\\"}]\\).\"",2,449,142,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668937946266*^9},ExpressionUUID->"18d78fa5-b519-470e-8e78-\
-2b7a6433bb1e"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread","mptc",
-   "\"Incompatible dimensions of objects at positions {2, \\!\\(\\*RowBox[{\\\
-\"1\\\"}]\\)} and {2, \\!\\(\\*RowBox[{\\\"2\\\"}]\\)} of \\!\\(\\*RowBox[{\\\
-\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", FractionBox[\\\"75\\\", \\\"2\\\
-\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \
-\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\); dimensions are \
-\\!\\(\\*RowBox[{\\\"6\\\"}]\\) and \\!\\(\\*RowBox[{\\\"24\\\"}]\\).\"",2,
-   450,143,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668937969329*^9},ExpressionUUID->"d3993e8d-58d1-47d9-ac7f-\
-75c7474f1a0f"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread","mptc",
-   "\"Incompatible dimensions of objects at positions {2, \\!\\(\\*RowBox[{\\\
-\"1\\\"}]\\)} and {2, \\!\\(\\*RowBox[{\\\"2\\\"}]\\)} of \\!\\(\\*RowBox[{\\\
-\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", FractionBox[\\\"75\\\", \\\"2\\\
-\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \
-\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\); dimensions are \
-\\!\\(\\*RowBox[{\\\"6\\\"}]\\) and \\!\\(\\*RowBox[{\\\"24\\\"}]\\).\"",2,
-   450,144,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689380029182`*^9},ExpressionUUID->"accc31e0-c499-4df8-9115-\
-9409267fc4ed"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread","mptc",
-   "\"Incompatible dimensions of objects at positions {2, \\!\\(\\*RowBox[{\\\
-\"1\\\"}]\\)} and {2, \\!\\(\\*RowBox[{\\\"2\\\"}]\\)} of \\!\\(\\*RowBox[{\\\
-\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", FractionBox[\\\"75\\\", \\\"2\\\
-\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \
-\\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \
-\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"+\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\); dimensions are \
-\\!\\(\\*RowBox[{\\\"6\\\"}]\\) and \\!\\(\\*RowBox[{\\\"24\\\"}]\\).\"",2,
-   450,145,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689380365067`*^9},ExpressionUUID->"f5555cd2-698d-4c0b-a73a-\
-b5b1cb9430dd"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"MapThread\\\", \\\"::\\\
-\", \\\"mptc\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
-calculation.\"",2,450,146,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668938068591*^9},ExpressionUUID->"5a4975ec-3f0f-4a64-9aee-\
-c877330dc780"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"3\\\"}]\\) of \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-FractionBox[\\\"75\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\
-\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", RowBox[{\\\"35\\\", \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \
-\\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\
-\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \
-\\\"+\\\", RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
-\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) does not exist.\"",2,450,147,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668938084635*^9},ExpressionUUID->"a413db65-d849-4bed-a5fe-\
-c076586959db"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"4\\\"}]\\) of \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-FractionBox[\\\"75\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\
-\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", RowBox[{\\\"35\\\", \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \
-\\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\
-\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \
-\\\"+\\\", RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
-\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) does not exist.\"",2,450,148,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689381147814`*^9},ExpressionUUID->"9a8f32af-2bd8-451f-86f1-\
-625b11dae8bc"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part","partw",
-   "\"Part \\!\\(\\*RowBox[{\\\"5\\\"}]\\) of \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", RowBox[{\\\"Dot\\\", \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \
-\\\",\\\", RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-FractionBox[\\\"75\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\
-\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"+\\\", RowBox[{\\\"35\\\", \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", RowBox[{\\\"-\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \
-\\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\
-\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \
-\\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \
-\\\",\\\", RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \
-\\\"+\\\", RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
-\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"]}], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"35\\\", \\\"+\\\", \
-RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\" \\\", RowBox[{\\\"Power\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
-\\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\
-\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \
-\\\"2\\\"], \\\",\\\", FractionBox[\\\"1\\\", \\\"2\\\"], \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\"-\\\", \
-RowBox[{\\\"35\\\", \\\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
-\\\"]\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"+\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", FractionBox[\\\
-\"1\\\", \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"-\\\
-\", FractionBox[\\\"75\\\", \\\"4\\\"]}], \\\"-\\\", RowBox[{\\\"35\\\", \\\" \
-\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \
-FractionBox[\\\"1\\\", \\\"2\\\"]}], \\\",\\\", \
-FractionBox[SqrtBox[\\\"3\\\"], \\\"2\\\"], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"35\\\", \\\"-\\\", RowBox[{FractionBox[\\\"75\\\", \\\"4\\\"], \\\
-\" \\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}]}], \\\"}\\\"}], \
-\\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \
-\\\",\\\", \\\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", \\\"1\\\"}], \\\",\\\", \\\"0\\\", \\\",\\\", \
-RowBox[{\\\"-\\\", FractionBox[\\\"75\\\", \\\"2\\\"]}]}], \\\"}\\\"}], \\\",\
-\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"0\\\", \\\",\\\", RowBox[{\\\"-\\\", \\\"70\\\"}]}], \\\"}\\\"}], \\\",\\\
-\", RowBox[{\\\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\
-\"1\\\", \\\",\\\", \\\"0\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \\\"0\\\", \\\",\\\", \
-\\\"1\\\"}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
-\"{\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"22\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \\\"1\\\"}], \
-\\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) does not exist.\"",2,450,149,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668938149995*^9},ExpressionUUID->"4b4b1cb4-76b9-42af-817a-\
-6d3a451bf026"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Part\\\", \\\"::\\\", \
-\\\"partw\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
-calculation.\"",2,450,150,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668938179574*^9},ExpressionUUID->"747898ca-9dba-4b96-a083-\
-33f485fba9e8"],
-
-Cell[BoxData[
- TemplateBox[{
-  "FindRoot","nlnum",
-   "\"The function value \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\
-\\\"-\\\", \\\"248.`\\\"}], \\\"+\\\", \
-SqrtBox[RowBox[{SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"290.`\\\"}], \\\"+\\\", \\\"Dot\\\"}], \\\"]\\\
-\"}], \\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"36.035699113967404`\\\"}], \\\"+\\\", \
-\\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", RowBox[{RowBox[{\\\"-\\\", \
-\\\"1.`\\\"}], \\\"+\\\", \\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"34.66162704443646`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\
-\\\", \\\"Dot\\\"}], \\\"]\\\"}], \\\"2\\\"]}]]}], \\\",\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"4\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"248.`\\\"}], \\\"+\\\", \
-SqrtBox[RowBox[{SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"-\\\", \\\"290.`\\\"}], \\\"+\\\", RowBox[{\\\"Part\\\", \
-\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
-\"}], \\\"]\\\"}]}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
-SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", RowBox[{RowBox[{\\\"-\\\", \
-\\\"1.`\\\"}], \\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\
-\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
-\"]\\\"}], \\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\
-\", RowBox[{RowBox[{\\\"34.66162704443646`\\\", \\\"\[VeryThinSpace]\\\"}], \
-\\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"]\\\"}], \
-\\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{\\\"Abs\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"36.035699113967404`\\\", \\\"\[VeryThinSpace]\\\"}], \
-\\\"+\\\", RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"]\\\"}], \
-\\\"2\\\"]}]]}]}], \\\"}\\\"}]\\) is not a list of numbers with dimensions \
-\\!\\(\\*RowBox[{\\\"{\\\", \\\"6\\\", \\\"}\\\"}]\\) at \
-\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"\[Theta]h1\\\", \\\",\\\", \\\"\
-\[Theta]h2\\\", \\\",\\\", \\\"\[Theta]h3\\\", \\\",\\\", \\\"\[Theta]h4\\\", \
-\\\",\\\", \\\"\[Theta]h5\\\", \\\",\\\", \\\"\[Theta]h6\\\"}], \
-\\\"}\\\"}]\\) = \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"1.5707963267948966`\\\", \\\",\\\", \\\"1.5707963267948966`\\\", \
-\\\",\\\", \\\"1.5707963267948966`\\\", \\\",\\\", \
-\\\"1.5707963267948966`\\\", \\\",\\\", \\\"1.5707963267948966`\\\", \
-\\\",\\\", \\\"1.5707963267948966`\\\"}], \\\"}\\\"}]\\).\"",2,450,151,
-   29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.719668938194614*^9},ExpressionUUID->"4d91ace3-6e8c-480a-910e-\
-27d305ec207a"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ReplaceAll","reps",
-   "\"\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"FindRoot\\\", \\\"[\\\", \
-RowBox[{\\\"rodConstraints\\\", \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"\[Theta]h1\\\", \\\",\\\", \
-FractionBox[\\\"\[Pi]\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", RowBox[{\\\"\[Theta]h2\\\", \\\",\\\", FractionBox[\\\"\
-\[Pi]\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"\[Theta]h3\\\", \\\",\\\", FractionBox[\\\"\[Pi]\\\", \
-\\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"\[Theta]h4\\\", \\\",\\\", FractionBox[\\\"\[Pi]\\\", \
-\\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"\[Theta]h5\\\", \\\",\\\", FractionBox[\\\"\[Pi]\\\", \
-\\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{\\\"\[Theta]h6\\\", \\\",\\\", FractionBox[\\\"\[Pi]\\\", \
-\\\"2\\\"]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\) is \
-neither a list of replacement rules nor a valid dispatch table, and so cannot \
-be used for replacing.\"",2,450,152,29237791733838145662,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7196689382156696`*^9},ExpressionUUID->"e613147a-00f4-4a3d-aff1-\
-32725e4c7b12"],
-
-Cell[BoxData[
- RowBox[{
-  FractionBox["1", "\[Pi]"], 
-  RowBox[{"180", " ", 
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-      "\[Theta]h1", ",", "\[Theta]h2", ",", "\[Theta]h3", ",", "\[Theta]h4", 
-       ",", "\[Theta]h5", ",", "\[Theta]h6"}], "}"}], "/.", 
-     "\[VeryThinSpace]", 
-     RowBox[{"FindRoot", "[", 
-      RowBox[{"rodConstraints", ",", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h1", ",", 
-           FractionBox["\[Pi]", "2"]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h2", ",", 
-           FractionBox["\[Pi]", "2"]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h3", ",", 
-           FractionBox["\[Pi]", "2"]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h4", ",", 
-           FractionBox["\[Pi]", "2"]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h5", ",", 
-           FractionBox["\[Pi]", "2"]}], "}"}], ",", 
-         RowBox[{"{", 
-          RowBox[{"\[Theta]h6", ",", 
-           FractionBox["\[Pi]", "2"]}], "}"}]}], "}"}]}], "]"}]}], 
-    ")"}]}]}]], "Output",
+ RowBox[{"{", 
+  RowBox[{
+  "70.22662873089352`", ",", "70.22662873089352`", ",", "70.22662873089352`", 
+   ",", "70.22662873089352`", ",", "70.22662873089352`", ",", 
+   "70.22662873089352`"}], "}"}]], "Output",
  CellChangeTimes->{
   3.7196655798685656`*^9, 3.7196656787603207`*^9, 3.7196658572167296`*^9, 
    3.719665914134739*^9, {3.719666008047435*^9, 3.7196660261108427`*^9}, {
@@ -2474,14 +927,15 @@ Cell[BoxData[
    3.719667062735139*^9, {3.7196671315292435`*^9, 3.719667180193668*^9}, 
    3.7196672307141128`*^9, {3.7196672997487817`*^9, 3.7196673451930637`*^9}, 
    3.719668144146338*^9, 3.719668175939182*^9, 3.719668246525282*^9, 
-   3.719668603680707*^9, 
-   3.7196689382362576`*^9},ExpressionUUID->"7b958de2-7048-48f4-bd39-\
-913d8387c0d8"]
+   3.719668603680707*^9, 3.7196689382362576`*^9, 3.719682502992023*^9, {
+   3.719684254011196*^9, 3.7196842953064528`*^9}, {3.719684749679906*^9, 
+   3.719684773269807*^9}},ExpressionUUID->"a3e1bdde-4a1a-433d-b2df-\
+fa15ac830274"]
 }, Open  ]]
 },
-WindowSize->{958, 1028},
-WindowMargins->{{Automatic, -7}, {Automatic, 0}},
-FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+WindowSize->{1920, 1016},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -2495,67 +949,17 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2057, 56, 202, "Input", "ExpressionUUID" -> \
-"e61b7c29-2738-4703-b619-edd2cd0b8802"],
-Cell[2618, 78, 7063, 164, 373, "Input", "ExpressionUUID" -> \
-"5bf13ceb-6b16-4c9f-8ae5-e314dc69becc"],
+Cell[558, 20, 2057, 56, 216, "Input",ExpressionUUID->"e61b7c29-2738-4703-b619-edd2cd0b8802"],
+Cell[2618, 78, 7063, 164, 354, "Input",ExpressionUUID->"5bf13ceb-6b16-4c9f-8ae5-e314dc69becc"],
 Cell[CellGroupData[{
-Cell[9706, 246, 8598, 214, 411, "Input", "ExpressionUUID" -> \
-"d2385fae-b865-4f0e-a8da-a3bd89a1e040"],
-Cell[18307, 462, 1783, 50, 50, "Output", "ExpressionUUID" -> \
-"f44f1d42-3033-416c-9dcd-b3ebdf0e13cb"],
-Cell[20093, 514, 1424, 34, 50, "Output", "ExpressionUUID" -> \
-"e24a2757-d73f-44ea-9840-c91ace77f31f"]
+Cell[9706, 246, 8466, 194, 331, "Input",ExpressionUUID->"d2385fae-b865-4f0e-a8da-a3bd89a1e040"],
+Cell[18175, 442, 2942, 59, 431, "Output",ExpressionUUID->"9d8b25bc-7eea-474f-bc42-8d5e43863bdb"]
 }, Open  ]],
-Cell[21532, 551, 4409, 93, 202, "Input", "ExpressionUUID" -> \
-"02d41fc8-aec8-41f6-82f8-93e7b05f0597"],
-Cell[25944, 646, 6076, 167, 280, "Input", "ExpressionUUID" -> \
-"6e251699-b723-4ad1-83f3-0e51fafb8b11"],
+Cell[21132, 504, 4104, 82, 170, "Input",ExpressionUUID->"02d41fc8-aec8-41f6-82f8-93e7b05f0597"],
+Cell[25239, 588, 6024, 168, 287, "Input",ExpressionUUID->"6e251699-b723-4ad1-83f3-0e51fafb8b11"],
 Cell[CellGroupData[{
-Cell[32045, 817, 10290, 226, 240, "Input", "ExpressionUUID" -> \
-"6deb5256-3a3b-4432-b19b-c5eecf7de331"],
-Cell[42338, 1045, 6758, 97, 251, "Message", "ExpressionUUID" -> \
-"55ced4a4-be95-471e-a9a6-ed0fd0a84777"],
-Cell[49099, 1144, 6760, 97, 251, "Message", "ExpressionUUID" -> \
-"82c045fb-fbdb-4c37-ae50-deb49a74dbe9"],
-Cell[55862, 1243, 6758, 97, 251, "Message", "ExpressionUUID" -> \
-"cac102b4-e717-4b79-b3f0-0fa062855eb4"],
-Cell[62623, 1342, 406, 9, 21, "Message", "ExpressionUUID" -> \
-"953762d0-b748-4771-882b-ad06c47ec8cb"],
-Cell[63032, 1353, 6593, 95, 250, "Message", "ExpressionUUID" -> \
-"78c0253f-43e7-4580-88af-f92434a1114c"],
-Cell[69628, 1450, 6591, 95, 250, "Message", "ExpressionUUID" -> \
-"9f72a23d-3b93-407d-8fec-260cccbdd58a"],
-Cell[76222, 1547, 6593, 95, 250, "Message", "ExpressionUUID" -> \
-"397641e5-285d-48ce-a18b-a6b79e33f2e0"],
-Cell[82818, 1644, 402, 9, 21, "Message", "ExpressionUUID" -> \
-"6c2be16a-91a7-4156-8a56-efd3ca326594"],
-Cell[83223, 1655, 2971, 46, 111, "Message", "ExpressionUUID" -> \
-"47e070b9-dc1c-46e7-8f9d-c2e7265e1cd3"],
-Cell[86197, 1703, 2969, 46, 111, "Message", "ExpressionUUID" -> \
-"18d78fa5-b519-470e-8e78-2b7a6433bb1e"],
-Cell[89169, 1751, 6758, 97, 251, "Message", "ExpressionUUID" -> \
-"d3993e8d-58d1-47d9-ac7f-75c7474f1a0f"],
-Cell[95930, 1850, 6760, 97, 251, "Message", "ExpressionUUID" -> \
-"accc31e0-c499-4df8-9115-9409267fc4ed"],
-Cell[102693, 1949, 6760, 97, 251, "Message", "ExpressionUUID" -> \
-"f5555cd2-698d-4c0b-a73a-b5b1cb9430dd"],
-Cell[109456, 2048, 404, 9, 21, "Message", "ExpressionUUID" -> \
-"5a4975ec-3f0f-4a64-9aee-c877330dc780"],
-Cell[109863, 2059, 6591, 95, 250, "Message", "ExpressionUUID" -> \
-"a413db65-d849-4bed-a5fe-c076586959db"],
-Cell[116457, 2156, 6593, 95, 250, "Message", "ExpressionUUID" -> \
-"9a8f32af-2bd8-451f-86f1-625b11dae8bc"],
-Cell[123053, 2253, 6591, 95, 250, "Message", "ExpressionUUID" -> \
-"4b4b1cb4-76b9-42af-817a-6d3a451bf026"],
-Cell[129647, 2350, 400, 9, 21, "Message", "ExpressionUUID" -> \
-"747898ca-9dba-4b96-a083-33f485fba9e8"],
-Cell[130050, 2361, 2969, 46, 111, "Message", "ExpressionUUID" -> \
-"4d91ace3-6e8c-480a-910e-27d305ec207a"],
-Cell[133022, 2409, 1287, 22, 65, "Message", "ExpressionUUID" -> \
-"e613147a-00f4-4a3d-aff1-32725e4c7b12"],
-Cell[134312, 2433, 1866, 45, 97, "Output", "ExpressionUUID" -> \
-"7b958de2-7048-48f4-bd39-913d8387c0d8"]
+Cell[31288, 760, 7717, 152, 124, "Input",ExpressionUUID->"6deb5256-3a3b-4432-b19b-c5eecf7de331"],
+Cell[39008, 914, 1075, 18, 68, "Output",ExpressionUUID->"a3e1bdde-4a1a-433d-b2df-fa15ac830274"]
 }, Open  ]]
 }
 ]
