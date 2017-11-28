@@ -9,16 +9,26 @@ import sys
 import tempfile
 
 import tensorflow as tf
-import numpy as np
+import pandas as pd
+
+def get_batch(batch_size, dataset):
+    """takes random rows of dataset and use for training/testing"""
+    pass
+
+# import data
+COLUMNS = ["servo1","servo2","servo3","servo4","servo5","servo6", \
+           "x","y","z","pitch","yaw","roll"]
+
+dataset = pd.read_csv("LUT.csv", names=COLUMNS)#this will need parsing/debugging
+
 sess = tf.Session()
 
 m = None
 
-
 x = tf.placeholder(tf.float32, [m, 6])
-c = tf.Variable(tf.ones([m, 6]))
-b = tf.Variable(tf.ones([6]))
-W = tf.Variable(tf.ones([6, m]))
+c = tf.Variable(tf.zeros([m, 6]))
+b = tf.Variable(tf.zeros([6]))
+W = tf.Variable(tf.zeros([6, m]))
 model = tf.matmul(tf.exp(-1 * tf.square(tf.abs(tf.subtract(x,c)) / b)),W)
 
 
