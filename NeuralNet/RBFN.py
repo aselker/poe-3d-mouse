@@ -12,19 +12,14 @@ import tensorflow as tf
 import numpy as np
 sess = tf.Session()
 
-x_i = tf.placeholder(tf.float32)
-c_i = tf.placeholder(tf.float32)
-b_i = tf.placeholder(tf.float32)
-diff_node = x_i - c_i
-arg_node = tf.division(diff_node, b_i)
-gaussian_node = tf.exp(-arg_node**2)
+m = None
 
 
-x = tf.placeholder(tf.float32, [None, 6])
-c = tf.Variable(tf.zeros([6, None]))
-W = tf.Variable(tf.zeros([6, None]))
-b = tf.Variable(tf.zeros([None]))
-model = tf.matmul(x, W) + b
+x = tf.placeholder(tf.float32, [m, 6])
+c = tf.Variable(tf.ones([m, 6]))
+b = tf.Variable(tf.ones([6]))
+W = tf.Variable(tf.ones([6, m]))
+model = tf.matmul(tf.exp(-1 * tf.square(tf.abs(tf.subtract(x,c)) / b)),W)
 
 
 init = tf.global_variables_initializer()
@@ -35,11 +30,6 @@ print(sess.run(model, {x: [1, 2, 3, 4, 5, 6]}))
 y = tf.placeholder(tf.float32)
 squared_deltas = tf.square(model - y)
 loss = tf.reduce_sum(squared_deltas)
-print(sess.run(loss, {x: [1, 2, 3, 4, 5, 6], y: [0, -1, -2, -3, -4, -5]}))
-
-fixW = tf.assign(W, [-1.])
-fixb = tf.assign(b, [1.])
-sess.run([fixW, fixb])
 print(sess.run(loss, {x: [1, 2, 3, 4, 5, 6], y: [0, -1, -2, -3, -4, -5]}))
 
 optimizer = tf.train.GradientDescentOptimizer(0.01)
