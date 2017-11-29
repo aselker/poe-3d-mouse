@@ -16,10 +16,15 @@ def get_batch(batch_size, dataset):
     pass
 
 # import data
-COLUMNS = ["servo1","servo2","servo3","servo4","servo5","servo6", \
-           "x","y","z","pitch","yaw","roll"]
+COLUMNS = ["servo angles", "position","rotation"]
 
-dataset = pd.read_csv("LUT.csv", names=COLUMNS)#this will need parsing/debugging
+dataset = pd.read_csv("../solnTable.csv", names=COLUMNS)#this will need parsing/debugging
+
+pos_text = dataset.get("position").to_string()
+pos_text = pos_text.replace('{','')
+pos_text = pos_text.replace('}','')
+pos_dataset = pd.read_csv(io.StringIO(pos_text), \
+                          names = ["x","y","z"])
 
 sess = tf.Session()
 
