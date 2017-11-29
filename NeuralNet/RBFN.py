@@ -10,6 +10,15 @@ import tempfile
 
 import tensorflow as tf
 import pandas as pd
+import parse_data
+import os
+import pickle
+
+if !os.path.isfile("./dataset.txt"):
+    parse_data.import_data()
+f = open("dataset.txt", "rb")
+datasets = pickle.load(f)
+f.close()
 
 def get_batch(batch_size, dataset):
     """takes random rows of dataset and use for training/testing"""
