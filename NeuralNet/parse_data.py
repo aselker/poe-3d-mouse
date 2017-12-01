@@ -11,6 +11,7 @@ dataset = pd.read_csv("LUT.txt", names=COLUMNS)#this will need parsing
 pos_text = dataset.get("position").to_string()
 pos_text = pos_text.replace('{','')
 pos_text = pos_text.replace('}','')
+pos_text = pos_text.replace('.', '0')
 pos_text = pos_text.split('\n')
 temp_pos = ""
 for line in pos_text:
@@ -18,7 +19,6 @@ for line in pos_text:
 pos_text = temp_pos
 pos_dataset = pd.read_csv(io.StringIO(pos_text), \
                           names = ["x","y","z"])
-
 
 servo_text = dataset.get("servo_angles").to_string()
 servo_text = servo_text.replace('{','')
@@ -28,7 +28,6 @@ servo_dataset = pd.read_csv(io.StringIO(servo_text), \
                           names = ["prec","s1","s2","s3","s4","s5", "s6"])
 servo_dataset = servo_dataset.drop(["prec"], axis=1)
 
-# temporary until angle formatting is fixed
 rot_text = dataset.get("rotation").to_string()
 rot_text = rot_text.split('\n')
 temp_rot = ""
@@ -39,7 +38,7 @@ rot_text = temp_rot
 rot_dataset = pd.read_csv(io.StringIO(rot_text), \
                           names = ["pitch", "yaw", "roll"])
 
-parsed_dataset = pd.concat([pos_dataset, rot_dataset, servo_dataset], axis = 1)
+parsed_dataset = pd.concat([servo_dataset, pos_dataset.get("z")], axis = 1)
 f = open("dataset.txt", "wb")
 pickle.dump(parsed_dataset, f)
 f.close()
