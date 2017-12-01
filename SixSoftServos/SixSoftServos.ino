@@ -16,7 +16,7 @@ const float offsets[] = {0, PI/3., 2.*PI/3., PI, 4.*PI/3., 5.*PI/3.};
 void setup() {
 
   for(int i = 0; i < 6; i++) {
-    servos[i].setup(enablePins[i], aPins[i], bPins[i], potPins[i], kp, ki, kd);
+    servos[i].setup(enablePins[i], aPins[i], bPins[i], potPins[i], kp, ki, kd, i%2==0); //Reversed iff odd
   }
 
 }
