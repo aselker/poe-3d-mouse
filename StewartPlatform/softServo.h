@@ -10,9 +10,9 @@ class softServo {
 
   public:
     softServo(); //Default constructor, for making lists
-    softServo(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool isReversed);
+    softServo(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool posReversed, bool potReversed);
 
-    void setup(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool isReversed);
+    void setup(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool posReversed, bool potReversed);
     //There are better ways to move these vars -- initializer lists and tuples -- but they require c++11
 
     void update(); //Actually reads the pot / sets the motor power; call regularly for best results
@@ -27,7 +27,7 @@ class softServo {
 
     static const int winLen = 300, maxPower = 96, posRange = 1023;
 
-    bool pinsInitialized, isReversed;
+    bool pinsInitialized, posReversed, potReversed;
     int enablePin, aPin, bPin, potPin;
 
     bool isPos; //True when we're trying to get to a position
