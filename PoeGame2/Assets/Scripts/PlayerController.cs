@@ -72,12 +72,12 @@ public class PlayerController : MonoBehaviour
         float z =player.transform.rotation[1];
         float x = player.transform.rotation[2];
         float y = player.transform.rotation[0];
-               float vary = (Mathf.Clamp(y, -0.40f,0.4f));
-        float varz = (Mathf.Clamp(z, -0.4f, 0.4f));
-        float varx = (Mathf.Clamp(x, -0.4f, 0.4f));
-        data = player.transform.rotation[0].ToString("F4")+","+player.transform.rotation[1].ToString("F4")+","+player.transform.rotation[2].ToString("F4")+","+player.transform.rotation[3].ToString("F4");
+// float vary = (Mathf.Clamp(y, -0.40f,0.4f));
+// float varz = (Mathf.Clamp(z, -0.4f, 0.4f));
+// float varx = (Mathf.Clamp(x, -0.4f, 0.4f));
+        data = player.transform.rotation[0].ToString("F4")+","+player.transform.rotation[1].ToString("F4")+","+(player.transform.rotation[2]+1).ToString("F4")+","+player.transform.rotation[3].ToString("F4");
         print(data);
-        player.transform.rotation = new Quaternion(vary, varz, varx, player.transform.rotation[3]);
+        player.transform.rotation = new Quaternion(y, z, x, player.transform.rotation[3]);
         
 
     }
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
         {
             stewartData[i] = float.Parse(temp[i]);
         }
-        print(stewartData);
+       // print(stewartData);
   //      Vector3 stewartLocation = new Vector3(stewartData[0], stewartData[1], stewartData[2]);
  //       Quaternion stewartAngles = Quaternion.Euler(stewartData[3], stewartData[4], stewartData[5]);
         

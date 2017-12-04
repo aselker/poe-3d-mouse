@@ -1,4 +1,6 @@
 #include "softServo.h"
+#include "Arduino.h"
+
 
 const int enablePins[] = {3,4,5,6,9,10};
 const int aPins[] = {2,7,11,33,31,28};

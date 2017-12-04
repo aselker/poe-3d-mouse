@@ -25,7 +25,7 @@ const float kp = 10, ki= 7, kd = 2;
 #define DEG2RAD      (PI/180.0f)
 #define RAD2DEG      (180.0f/PI)
 
-#define BAUD    (57600)
+#define BAUD    (9600)
 #define MAX_BUF (64)
 
 
