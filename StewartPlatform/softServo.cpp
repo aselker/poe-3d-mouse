@@ -61,7 +61,7 @@ void softServo::setPos(int pos) {
     total = 0;
   }
 
-  this->goalPos = (this->isReversed ? posRange-pos : pos);
+  this->goalPos = (this->posReversed ? posRange-pos : pos);
   isPos = true;
 
 }
