@@ -6,19 +6,20 @@ softServo::softServo() {
 
 }
 
-softServo::softServo(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool isReversed) {
+softServo::softServo(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool posReversed, bool potReversed) {
 
-  setup(enablePin, aPin, bPin, potPin, kp, ki, kd, isReversed);
+  setup(enablePin, aPin, bPin, potPin, kp, ki, kd, posReversed, potReversed);
 
 }
 
-void softServo::setup(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool isReversed) {
+void softServo::setup(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool posReversed, bool potReversed) {
 
   this->enablePin = enablePin;
   this->aPin = aPin;
   this->bPin = bPin;
   this->potPin = potPin;
-  this->isReversed = isReversed;
+  this->posReversed = posReversed;
+  this->potReversed = potReversed;
 
   pinMode(enablePin, OUTPUT);
   pinMode(aPin, OUTPUT);
@@ -73,7 +74,7 @@ int softServo::getPos() {
 
 void softServo::update() {
 
-  pos = analogRead(potPin);
+  pos = potReversed ? -analogRead(potPin) : analogRead(potPin);
 
   if (isPos) {
 
