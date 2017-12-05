@@ -23,11 +23,13 @@ class softServo {
     void setPos(int pos); //Go to a position, using current pids. Position is in whatever unit the Arduino uses for analog sensing (usually 0-1023 for full range).
     int getPos(); //Where is it *actually*?
 
+    bool motorReversed, potReversed;
+
   private:
 
     static const int winLen = 300, maxPower = 64, posRange = 1023;
 
-    bool pinsInitialized, motorReversed, potReversed;
+    bool pinsInitialized;
     int enablePin, aPin, bPin, potPin;
 
     bool isPos; //True when we're trying to get to a position

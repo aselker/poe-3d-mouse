@@ -2,9 +2,9 @@
 #include "Arduino.h"
 
 
-const int enablePins[] = {3,5,4,6,9,10};
-const int aPins[] = {2,11,7,33,31,28};
-const int bPins[] = {13,12,8,32,30,27};
+const int enablePins[] = {3,4,5,6,9,10};
+const int aPins[] = {2,7,11,33,31,28};
+const int bPins[] = {13,8,12,32,30,27};
 const int potPins[] = {A0, A2, A4, A6, A8, A10};
 
 const float kp = 10, ki= 7, kd = 2;
@@ -23,29 +23,29 @@ void setup() {
     servos[i].setup(enablePins[i], aPins[i], bPins[i], potPins[i], kp, ki, kd, false, false); //None are reversed, for testing purposes
   }
 
-  servos[0].potReversed = false;
+  servos[0].potReversed = true;
   servos[0].motorReversed = false;
 
-  servos[1].potReversed = true;
-  servos[1].motorReversed = true;
+  servos[1].potReversed = false;
+  servos[1].motorReversed = false;
 
-  servos[2].potReversed = false;
+  servos[2].potReversed = true;
   servos[2].motorReversed = false;
 
-  servos[3].potReversed = false;
+  servos[3].potReversed = true;
   servos[3].motorReversed = false;
   
-  servos[4].potReversed = true;
+  servos[4].potReversed = false;
   servos[4].motorReversed = true;
   
-  servos[5].potReversed = true;
+  servos[5].potReversed = false;
   servos[5].motorReversed = false;
 
 }
 
 void loop() {
   
-  for(int i = 0; i < 1; i++) {
+  for(int i = 0; i < 6; i++) {
     int phase = sin(float(millis())/1000*speed*2*PI);
     int angle = center + (phase*motionRange);
     servos[i].setPos(angle);
