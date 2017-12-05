@@ -6,19 +6,19 @@ softServo::softServo() {
 
 }
 
-softServo::softServo(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool posReversed, bool potReversed) {
+softServo::softServo(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool motorReversed, bool potReversed) {
 
-  setup(enablePin, aPin, bPin, potPin, kp, ki, kd, posReversed, potReversed);
+  setup(enablePin, aPin, bPin, potPin, kp, ki, kd, motorReversed, potReversed);
 
 }
 
-void softServo::setup(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool posReversed, bool potReversed) {
+void softServo::setup(int enablePin, int aPin, int bPin, int potPin, float kp, float ki, float kd, bool motorReversed, bool potReversed) {
 
   this->enablePin = enablePin;
   this->aPin = aPin;
   this->bPin = bPin;
   this->potPin = potPin;
-  this->posReversed = posReversed;
+  this->motorReversed = motorReversed;
   this->potReversed = potReversed;
 
   pinMode(enablePin, OUTPUT);
@@ -61,7 +61,7 @@ void softServo::setPos(int pos) {
     total = 0;
   }
 
-  goalPos = (posReversed ? posRange-pos : pos);
+  this->goalPos = pos;
   isPos = true;
 
 }
@@ -74,7 +74,7 @@ int softServo::getPos() {
 
 void softServo::update() {
 
-  pos = potReversed ? (posRange-analogRead(potPin)) : analogRead(potPin);
+  pos = potReversed ? posRange-analogRead(potPin) : analogRead(potPin);
 
   if (isPos) {
 
@@ -99,9 +99,9 @@ void softServo::update() {
 
     lastError = error;
 
-  } else {//End if isPos
-    if (posReversed) power = -power; //If setting power, not position, reverse that too
-  }
+  } //End if isPos
+
+  if (motorReversed) power = -power;
 
   if (power > maxPower) power = maxPower;
   if (power < -maxPower) power = -maxPower;

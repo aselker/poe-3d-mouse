@@ -24,22 +24,22 @@ void setup() {
   }
 
   servos[0].potReversed = false;
-  servos[0].posReversed = false;
+  servos[0].motorReversed = false;
 
   servos[1].potReversed = true;
-  servos[1].posReversed = true;
+  servos[1].motorReversed = true;
 
   servos[2].potReversed = false;
-  servos[2].posReversed = false;
+  servos[2].motorReversed = false;
 
   servos[3].potReversed = false;
-  servos[3].posReversed = false;
+  servos[3].motorReversed = false;
   
   servos[4].potReversed = true;
-  servos[4].posReversed = true;
+  servos[4].motorReversed = true;
   
   servos[5].potReversed = true;
-  servos[5].posReversed = false;
+  servos[5].motorReversed = false;
 
 }
 
