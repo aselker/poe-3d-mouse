@@ -27,7 +27,7 @@ class softServo {
 
   private:
 
-    static const int winLen = 300, maxPower = 64, posRange = 1023;
+    static const int winLen = 300, maxPower = 96, posRange = 1023, deadSpot = 30;
 
     bool pinsInitialized;
     int enablePin, aPin, bPin, potPin;
