@@ -13,16 +13,14 @@ dataset = pickle.load(f)
 f.close()
 data_size = len(dataset)
 
-print(np.shape(np.array(dataset[:int(data_size * .9)])[:,:6]))
-
 # training set
 X1 = np.array(dataset[:int(data_size * .9)])[:,:6]
-Y1 = np.array(dataset[:int(data_size * .9)])[:,9]
+Y1 = np.array(dataset[:int(data_size * .9)])[:,11]
 # validation/testing set
 X2 = np.array(dataset[int(data_size * .9):])[:,:6]
-Y2 = np.array(dataset[int(data_size * .9):])[:,9]
+Y2 = np.array(dataset[int(data_size * .9):])[:,11]
 
-print(X1)
+print(Y2)
 
 # create model
 model = Sequential()
@@ -43,9 +41,6 @@ PredTestSet = model.predict(X1)
 PredValSet = model.predict(X2)
 
 # Save predictions
-np.savetxt("trainresults.csv", PredTestSet, delimiter=",")
-np.savetxt("valresults.csv", PredValSet, delimiter=",")
-
-from keras.models import load_model
-
-model.save('z_pos.h5')  # creates a HDF5 file 'my_model.h5'
+np.savetxt("c_trainresults.csv", PredTestSet, delimiter=",")
+np.savetxt("c_valresults.csv", PredValSet, delimiter=",")
+model.save('c_net.h5')  # creates a HDF5 file 'my_model.h5'
