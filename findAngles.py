@@ -3,6 +3,7 @@ from math import *
 import numpy as np
 from time import time
 from random import *
+from pickle import dump
 
 
 np.set_printoptions(linewidth=200)
@@ -52,25 +53,25 @@ def getTop(x,y,z,ux,uy,uz):
 def ei(n):
   # j is the component vectors here
   j = botPts[0:3,n]
-  print(n)
+  # print(n)
   # normalizes unit vector
   j = j/np.linalg.norm(j)#*radians(90)
-  if (n%2 == 0):
+  if (n%2 == 1):
     theta = np.radians(9.15)
   else:
        theta = np.radians(-9.15)
   c, s = np.cos(theta), np.sin(theta)
   R = np.array([[c, -s, 0], [s, c,0], [0,0,1]])
-  print('before', j)
+  # print('before', j)
   #print(R)
   j = R.dot(j.T)
 
-  print('after', j)
+  # print('after', j)
   # TODO: add rotational matrix to rotate j, in the form [i, j, k]
   # print (np.array([j[1],-j[0],0,0])*(-1)**n)
   #print(np.array([j[1],-j[0],0,0])*(-1)**n)
   j = np.array([j[1],-j[0],0,0])*(-1)**n
-  print('return', j)
+  # print('return', j)
   return j
 
 
@@ -95,24 +96,26 @@ def findAngles(x,y,z,ux,uy,uz):
   return thetas
 
 if __name__ == '__main__':
+    csv_data = []
     count = 0
-    n = 1
-    t = 2
+    n = 10000
+    t = 10
     for i in range(n):
       before = time()
       x = random()*4.5-2.25
       y = random()*4.5-2.25
       z = legLen + random()*hornRad*0.75
-      a = random()*2*t-t
-      b = random()*2*t-t
-      c = random()*2*t-t+1
-      angles = findAngles(x,y,z,0,0,1)
+      a = np.sin(radians(random()*2*t-t))
+      b = np.sin(radians(random()*2*t-t))
+      c = np.cos(radians(random()*2*t-t))
+      angles = findAngles(x,y,z,a,b,c)
       after = time()
     #  print(after-before)
       if (len(angles) == 6):
           count = count + 1
+          csv_data.append([x,y,z,a,b,c,angles[0],angles[1],angles[2],angles[3],angles[4],angles[5]])
+    # print(str(float(count)/n) + "angles")
 
-
-      #print("Angles" + str(x)+", "+str(y)+", "+str(z)+", "+str(a)+", "+str(b)+", "+str(c))
-     # print(angles)
-    #print(str(float(count)/n) + "angles")
+    f = open("LUT.txt", "wb")
+    dump(csv_data, f)
+    f.close
