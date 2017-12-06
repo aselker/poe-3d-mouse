@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO.Ports;
+
 public class PlayerController : MonoBehaviour
 {
+   
  
     public float speed;
     private Rigidbody player;
     public string data = "";
+    public string send_data = "";
     public string stewartPosition = "";
     public Transform target;
     SerialPort serial = new SerialPort("COM6", 115200);
@@ -18,7 +21,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         player = GetComponent<Rigidbody>();
+        GameObject thePlayer = GameObject.Find("player");
+        networkSocket networkScript = thePlayer.GetComponent<networkSocket>();
+       
         
+
     }
     void FixedUpdate()
     {
@@ -28,7 +35,7 @@ public class PlayerController : MonoBehaviour
        // rotating(stewartInput);
         output();
         breakjoint();
-        writeToArduino();
+        writeToPython(normalVector());
 
     }
     void Update()
@@ -45,12 +52,13 @@ public class PlayerController : MonoBehaviour
         }
          serial.ReadTimeout = 500;
          serial.WriteTimeout = 500;
-
+      
 
     }
     void LateUpdate()
     {
         limitAngle();
+        
     }
 
     void OnCollisionStay(Collision other)
@@ -72,13 +80,32 @@ public class PlayerController : MonoBehaviour
         float z =player.transform.rotation[1];
         float x = player.transform.rotation[2];
         float y = player.transform.rotation[0];
-// float vary = (Mathf.Clamp(y, -0.40f,0.4f));
-// float varz = (Mathf.Clamp(z, -0.4f, 0.4f));
-// float varx = (Mathf.Clamp(x, -0.4f, 0.4f));
+        float vary = (Mathf.Clamp(y, -0.10f,0.1f));
+        float varz = (Mathf.Clamp(z, -0.1f, 0.1f));
+        float varx = (Mathf.Clamp(x, -0.1f, 0.1f));
         data = player.transform.rotation[0].ToString("F4")+","+player.transform.rotation[1].ToString("F4")+","+(player.transform.rotation[2]+1).ToString("F4")+","+player.transform.rotation[3].ToString("F4");
         print(data);
-        player.transform.rotation = new Quaternion(y, z, x, player.transform.rotation[3]);
+        player.transform.rotation = new Quaternion(vary, varz, varx, player.transform.rotation[3]);
         
+
+    }
+    Vector3 normalVector()
+    {
+        float z = player.transform.eulerAngles[1];
+        float x = player.transform.eulerAngles[2];
+        float y = player.transform.eulerAngles[0];
+
+        Vector3 a = transform.TransformPoint(Vector3.Scale(transform.localScale / 2, new Vector3(1, 1, -1)));
+        Vector3 b = transform.TransformPoint(Vector3.Scale(transform.localScale / 2, new Vector3(-1, 1, 1)));
+        Vector3 c = transform.TransformPoint(Vector3.Scale(transform.localScale / 2, new Vector3(-1, 1, -1)));
+        Vector3 side1 = b - a;
+        Vector3 side2 = c - a;
+        Vector3 perp = Vector3.Cross(side2, side1);
+        var perpLength = perp.magnitude;
+        perp /= perpLength;
+
+        return (perp);
+    
 
     }
     void rotating(float[] moredata)
@@ -181,13 +208,14 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    void writeToArduino()
+    void writeToPython(Vector3 normVec)
     {
         Vector3 bar = player.transform.position;
         Vector3 bar2 = player.transform.eulerAngles;
 
-       string outPutData = bar[0].ToString("F2") + "," + bar[1].ToString("F2") + "," + bar[2].ToString("F2") + "," + bar2[0].ToString("F0") + "," + bar[1].ToString("F0") + "," + bar[2].ToString("F0")  + "\r\n";
-        serial.WriteLine(outPutData);
+       string outPutData = bar[0].ToString("F2") + "," + bar[2].ToString("F2") + "," + (bar[1]+3).ToString("F2") + "," + normVec[0].ToString("F0") + "," + normVec[2].ToString("F0") + "," + normVec[1].ToString("F0");
+        send_data = outPutData;
+      //  serial.WriteLine(outPutData);
     }
 
 
