@@ -116,6 +116,6 @@ if __name__ == '__main__':
           csv_data.append([x,y,z,a,b,c,angles[0],angles[1],angles[2],angles[3],angles[4],angles[5]])
     # print(str(float(count)/n) + "angles")
 
-    f = open("LUT.txt", "wb")
+    f = open("CorrectedLUT.txt", "wb")
     dump(csv_data, f)
     f.close
