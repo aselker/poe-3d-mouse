@@ -12,12 +12,17 @@ f = open("../LUT.txt", "rb")
 dataset = pickle.load(f)
 f.close()
 data_size = len(dataset)
+
+print(np.shape(np.array(dataset[:int(data_size * .9)])[:,:6]))
+
 # training set
-X1 = np.array(dataset[:int(data_size * .9)][:6])
-Y1 = np.array(dataset[:int(data_size * .9)][6:])
+X1 = np.array(dataset[:int(data_size * .9)])[:,:6]
+Y1 = np.array(dataset[:int(data_size * .9)])[:,9]
 # validation/testing set
-X2 = np.array(dataset[int(data_size * .9):][:6])
-Y2 = np.array(dataset[int(data_size * .9):][6:])
+X2 = np.array(dataset[int(data_size * .9):])[:,:6]
+Y2 = np.array(dataset[int(data_size * .9):])[:,9]
+
+print(X1)
 
 # create model
 model = Sequential()
@@ -28,7 +33,10 @@ model.add(Dense(1, init='uniform', activation='linear'))
 model.compile(loss='mse', optimizer='adam', metrics=['accuracy'])
 
 # Fit the model
-model.fit(X1, Y1, nb_epoch=5000, batch_size=10,  verbose=2)
+# model.fit(X1, Y1, nb_epoch=5000, batch_size=10,  verbose=2)
+
+# for faster testing only 500 epochs
+model.fit(X1, Y1, nb_epoch=500, batch_size=10,  verbose=2)
 
 # Calculate predictions
 PredTestSet = model.predict(X1)
@@ -37,3 +45,7 @@ PredValSet = model.predict(X2)
 # Save predictions
 np.savetxt("trainresults.csv", PredTestSet, delimiter=",")
 np.savetxt("valresults.csv", PredValSet, delimiter=",")
+
+from keras.models import load_model
+
+model.save('z_pos.h5')  # creates a HDF5 file 'my_model.h5'
