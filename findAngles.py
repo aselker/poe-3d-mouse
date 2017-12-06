@@ -98,7 +98,7 @@ def findAngles(x,y,z,ux,uy,uz):
 if __name__ == '__main__':
     csv_data = []
     count = 0
-    n = 1
+    n = 10000
     t = 10
     for i in range(n):
       before = time()
@@ -108,8 +108,7 @@ if __name__ == '__main__':
       a = np.sin(radians(random()*2*t-t))
       b = np.sin(radians(random()*2*t-t))
       c = np.cos(radians(random()*2*t-t))
-      angles = findAngles(0,0,legLen,0,0,1)
-      print(angles)
+      angles = findAngles(x,y,z,a,b,c)
       after = time()
     #  print(after-before)
       if (len(angles) == 6):
@@ -118,6 +117,5 @@ if __name__ == '__main__':
     # print(str(float(count)/n) + "angles")
 
     f = open("LUT.txt", "wb")
-
     dump(csv_data, f)
     f.close
