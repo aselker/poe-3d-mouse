@@ -56,7 +56,7 @@ def ei(n):
   # print(n)
   # normalizes unit vector
   j = j/np.linalg.norm(j)#*radians(90)
-  if (n%2 == 1):
+  if (n%2 == 0):
     theta = np.radians(9.15)
   else:
        theta = np.radians(-9.15)
@@ -98,7 +98,7 @@ def findAngles(x,y,z,ux,uy,uz):
 if __name__ == '__main__':
     csv_data = []
     count = 0
-    n = 10000
+    n = 1
     t = 10
     for i in range(n):
       before = time()
@@ -108,7 +108,8 @@ if __name__ == '__main__':
       a = np.sin(radians(random()*2*t-t))
       b = np.sin(radians(random()*2*t-t))
       c = np.cos(radians(random()*2*t-t))
-      angles = findAngles(x,y,z,a,b,c)
+      angles = findAngles(0,0,legLen,0,0,1)
+      print(angles)
       after = time()
     #  print(after-before)
       if (len(angles) == 6):
@@ -117,5 +118,6 @@ if __name__ == '__main__':
     # print(str(float(count)/n) + "angles")
 
     f = open("LUT.txt", "wb")
+
     dump(csv_data, f)
     f.close
