@@ -8,6 +8,10 @@ to test tcp networking code
 import socket
 from Listen_angles import*
 import re
+import serial
+import time
+ser = serial.Serial('COM19', 9600, timeout=0)
+
 
 
 host = ''
@@ -32,7 +36,7 @@ while 1:
         delim = answer.encode('utf-8')
         data = client.recv(size).rstrip( delim)
         data = data.decode('utf-8')
-        print(data)
+        #print(data)
         if data:
             if data=="quit":
                 client.send("Bye!\n")
@@ -40,7 +44,7 @@ while 1:
                 break
             else:
                 reply = re.split(',',data[:-1])
-                print(reply)
+                #print(reply)
                 try:
                     x = float(reply[0])
                     y = float(reply[1])
@@ -52,7 +56,10 @@ while 1:
                     print("skip")
                 data = findAngles(x,y,z,a,b,c)
                 data = (str(data)[1:-1])
-                print(data)
-                reply = data + "\n"
+                #print(data)
+                reply = data + ","
                 reply = reply.encode('utf-8')
-                client.send(reply)
+                print(reply)
+                ser.write(reply)
+                time.sleep(0.1) 
+                #client.send(reply)
