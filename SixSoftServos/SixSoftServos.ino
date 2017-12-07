@@ -2,7 +2,7 @@
 #include "Arduino.h"
 
 
-const int enablePins[] = {3,4,5,6,9,10};
+const int enablePins[] = {25,4,5,6,9,10};
 const int aPins[] = {2,7,11,33,31,28};
 const int bPins[] = {13,8,12,32,30,27};
 const int potPins[] = {A0, A2, A4, A6, A8, A10};
@@ -55,6 +55,7 @@ void setup() {
   pinMode(buttonPin, INPUT_PULLUP);
   for (int i = 0; i < 6; i++)
   {
+  Serial.print(centerPos[i]);
   servos[i].setPos(centerPos[i]);
   }
 
@@ -67,12 +68,13 @@ void loop() {
     //Serial.println(in);
     for (int i = 0; i < 6; i++) {
       int pos = in.indexOf(',');
-      
+      Serial.print(i); Serial.print("\t");
 
       if (pos == -1) { //If we didn't find a match, use the rest of the string
      //   servos[i].setPos(atoi(in.c_str()) * 1023.0 / 180.0); //Set the servo using the entire string
         break; //Can't read any more
       } //End if no match
+      
       
       String substr = in.substring(0,pos); //Select the first part
      // Serial.println(substr);
@@ -80,7 +82,7 @@ void loop() {
       in.remove(0, pos+1); //Remove that many chars, including the comma
       Serial.print(centerPos[i] - 5*angle); Serial.print("\t");
       servos[i].setPos(centerPos[i] - 5*angle); //Set the servo
-
+      
     } //end for
   } //end if available
 

@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
         Vector3 bar = player.transform.position;
         Vector3 bar2 = player.transform.eulerAngles;
 
-       string outPutData = bar[0].ToString("F2") + "," + bar[2].ToString("F2") + "," + (bar[1]+3).ToString("F2") + "," + normVec[0].ToString("F0") + "," + normVec[2].ToString("F0") + "," + normVec[1].ToString("F0");
+       string outPutData = bar[0].ToString("F2") + "," + bar[2].ToString("F2") + "," + (bar[1]+3).ToString("F2") + "," + normVec[0].ToString("F0") + "," + normVec[2].ToString("F0") + "," + normVec[1].ToString("F0") + ",";
         send_data = outPutData;
       //  serial.WriteLine(outPutData);
     }
