@@ -9,13 +9,14 @@ import serial
 from time import sleep
 
 
-ser = serial.Serial('/dev/ttyACM0', 9600)#, timeout=0)
+ser = serial.Serial('COM19', 9600)#, timeout=0)
 
 while 1:
   for i in list(range(-180,180)) + list(reversed(range(-180,180))):
     reply = (str(i) + ",") * 5 + str(i) + "\n"
-    print(reply)
+   
     reply = reply.encode('utf-8')
+    print(reply)
     ser.write(reply)
 
     if ser.in_waiting:

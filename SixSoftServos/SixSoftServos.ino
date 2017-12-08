@@ -67,12 +67,12 @@ void loop() {
         int pos = strIn.indexOf(',');
 
         if (pos == -1) { //If we didn't find a match, use the rest of the string
-          servos[i].setPos(centerPos[i] - strIn.toInt());
+          servos[i].setPos(centerPos[i] - 5*strIn.toInt());
           break; //Can't read any more
         } //End if no match
         
         String substr = strIn.substring(0,pos); //Select the first part
-        servos[i].setPos(centerPos[i] - substr.toInt());
+        servos[i].setPos(centerPos[i] - 5*substr.toInt());
         strIn.remove(0, pos+1); //Remove that many chars, including the comma
       } //end for 
       strIn = "";
@@ -83,8 +83,8 @@ void loop() {
 
   for (int i = 0; i < 6; i++) {
     servos[i].update();
-    Serial.print(servos[i].getPos()); //Print the actual position, then a comma
-    if (i != 5) Serial.print(",");
+   // Serial.print(servos[i].getPos()); //Print the actual position, then a comma
+  //  if (i != 5) Serial.print(",");
   }
 
 /*
@@ -102,7 +102,7 @@ void loop() {
     } else Serial.println("0"); //No change
   }
 */
-  //Serial.println("");
+  Serial.println("");
   
   
   delay(10);
