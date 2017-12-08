@@ -18,7 +18,7 @@ rT     = 2.13;
 
 k = np.array([0,0,1,0])
 
-legLen = 4 + 15/16.0
+legLen = 4.849 #inches
 hornRad = 2.75
 
 mins =[620,2310,810,2280,540,2260]
