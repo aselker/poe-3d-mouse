@@ -83,8 +83,8 @@ void loop() {
 
   for (int i = 0; i < 6; i++) {
     servos[i].update();
-    //Serial.print(servos[i].getPos()); //Print the actual position, then a comma
-    //if (i != 5) Serial.print(",");
+    Serial.print(servos[i].getPos()); //Print the actual position, then a comma
+    if (i != 5) Serial.print(",");
   }
 
 /*
