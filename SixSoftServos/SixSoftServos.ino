@@ -2,11 +2,11 @@
 #include "Arduino.h"
 
 
-const int enablePins[] = {4,5,6,9,10,25};
-const int aPins[] = {7,11,33,31,28,2};
-const int bPins[] = {8,12,32,30,27, 13};
-const int potPins[] = {A2, A4, A6, A8, A10,A0};
-const int centerPos[] = {700,750,750,750,700,770};
+const int enablePins[] = {10, 25, 4, 5, 6, 9};
+const int aPins[] = {28, 2, 7, 11, 33, 31};
+const int bPins[] = {27, 13, 8, 12, 32, 30};
+const int potPins[] = {A10, A0, A2, A4, A6, A8};
+const int centerPos[] = {700, 770, 700, 750, 750, 750};
 int angle;
 
 
