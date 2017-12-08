@@ -10,7 +10,7 @@ from Listen_angles import*
 import re
 import serial
 import time
-ser = serial.Serial('COM19', 9600, timeout=0)
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=0)
 
 
 
