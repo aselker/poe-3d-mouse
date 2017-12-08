@@ -102,10 +102,10 @@ def findPosition(models, angles):
 
 
 if __name__ == '__main__':
-    csv_data = []
+    # csv_data = []
     count = 0
-    n = 10000
-    t = 10
+    n = 200000
+    t = 30
     x_model = load_model('x_net.h5')
     y_model = load_model('y_net.h5')
     z_model = load_model('z_net.h5')
@@ -117,7 +117,7 @@ if __name__ == '__main__':
       before = time()
       x = random()*4.5-2.25
       y = random()*4.5-2.25
-      z = legLen + random()*hornRad*0.75
+      z = legLen + random()*hornRad*0.75*2 - hornRad*0.75
       a = np.sin(radians(random()*2*t-t))
       b = np.sin(radians(random()*2*t-t))
       c = np.cos(radians(random()*2*t-t))
@@ -126,6 +126,7 @@ if __name__ == '__main__':
     #  print(after-before)
       if (len(angles) == 6):
           count = count + 1
+        #   csv_data.append([x,y,z,a,b,c,angles[0],angles[1],angles[2],angles[3],angles[4],angles[5]])
     # print(str(float(count)/n) + "angles")
 
 
