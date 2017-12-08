@@ -2,11 +2,11 @@
 #include "Arduino.h"
 
 
-const int enablePins[] = {25,4,5,6,9,10};
-const int aPins[] = {2,7,11,33,31,28};
-const int bPins[] = {13,8,12,32,30,27};
-const int potPins[] = {A0, A2, A4, A6, A8, A10};
-const int centerPos[] = {770,700,750,750,750,700};
+const int enablePins[] = {4,5,6,9,10,25};
+const int aPins[] = {7,11,33,31,28,2};
+const int bPins[] = {8,12,32,30,27, 13};
+const int potPins[] = {A2, A4, A6, A8, A10,A0};
+const int centerPos[] = {700,750,750,750,700,770};
 int angle;
 
 
@@ -30,24 +30,24 @@ void setup() {
   for(int i = 0; i < 6; i++) {
     servos[i].setup(enablePins[i], aPins[i], bPins[i], potPins[i], kp, ki, kd, false, false); //None are reversed, for testing purposes
   }
-
-  servos[0].potReversed = true;
+  
+  servos[0].potReversed = false;
   servos[0].motorReversed = false;
 
-  servos[1].potReversed = false;
+  servos[1].potReversed = true;
   servos[1].motorReversed = false;
 
-  servos[2].potReversed = true;
+  servos[2].potReversed = false;
   servos[2].motorReversed = false;
 
   servos[3].potReversed = true;
   servos[3].motorReversed = false;
-  
-  servos[4].potReversed = false;
-  servos[4].motorReversed = true;
+
+  servos[4].potReversed = true;
+  servos[4].motorReversed = false;
   
   servos[5].potReversed = false;
-  servos[5].motorReversed = false;
+  servos[5].motorReversed = true;
 
   pinMode(buttonPin, INPUT_PULLUP);
   for (int i = 0; i < 6; i++)
