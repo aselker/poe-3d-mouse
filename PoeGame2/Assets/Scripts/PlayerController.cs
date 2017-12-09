@@ -29,29 +29,23 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-
-        //movingData(stewartInput);
-        moving();
+       
+       // moving();
        // rotating(stewartInput);
         output();
         breakjoint();
         writeToPython(normalVector());
 
+        string actualPosition = GetComponent<networkSocket>().actualPosition;
+        string[] positionVectors = actualPosition.Split(',');
+        Vector3 xyzPos = new Vector3(float.Parse(positionVectors[0]), float.Parse(positionVectors[1]), float.Parse(positionVectors[2]));
+        movingData(xyzPos);
+
+
     }
     void Update()
     {
-        if (!serial.IsOpen)
-        {
-            serial.Open();
-
-        }
-        if (serial.IsOpen)
-        {
-              stewartPosition = readarduino(); // reads poistion and angles from arduino
-            stewartInput = readStewartPosition(stewartPosition);
-        }
-         serial.ReadTimeout = 500;
-         serial.WriteTimeout = 500;
+       
       
 
     }
@@ -124,14 +118,17 @@ public class PlayerController : MonoBehaviour
         float torquey = (targety - y)*50;
 
 
+
+
         player.GetComponent<Rigidbody>().AddTorque(torquey, torquez, torquex);
     }
-    void movingData(float[] moredata)
+    void movingData(Vector3 xyzPos)
     {
-        Vector3 stewartpos = new Vector3(moredata[0], moredata[1], moredata[2]);
-        float targetx = stewartpos[2];
-        float targety = stewartpos[0];
-        float targetz = stewartpos[1];
+      
+        float targetx = xyzPos[0];
+        float targety = xyzPos[1];
+        float targetz = xyzPos[2];
+        targetz = targetz - 3;
 
         float z = player.transform.position[1];
         float x = player.transform.position[2];
@@ -141,7 +138,7 @@ public class PlayerController : MonoBehaviour
         float forcez = (targetz - z) * 50;
         float forcey = (targety - y) * 50;
 
-
+        Debug.Log(xyzPos);
         player.GetComponent<Rigidbody>().AddForce(forcey, forcez, forcex);
     }
     void moving()
@@ -170,7 +167,7 @@ public class PlayerController : MonoBehaviour
         data = bar[0].ToString("F2") + "," + bar[1].ToString("F2") + "," + bar[2].ToString("F2") + "," + bar2[0].ToString("F0") + "," + bar[1].ToString("F0") + "," + bar[2].ToString("F0") + "," + Time.fixedDeltaTime + "\r\n";
         //System.IO.File.AppendAllText(@"C:\Users\hyoung\Documents\_POE\POE Project\PoeGame2\data.txt", data);
 
-        Debug.Log(data);
+        
     }
 
     void breakjoint()
@@ -217,6 +214,7 @@ public class PlayerController : MonoBehaviour
         send_data = outPutData;
       //  serial.WriteLine(outPutData);
     }
+
 
 
 }

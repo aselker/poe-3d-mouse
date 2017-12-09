@@ -31,7 +31,7 @@ while 1:
     print ("Client connected.")
     answer = "Hello!\n"
     b = answer.encode('utf-8')
-    client.send(b)
+    
 
     while 1:
        delim = "\r\n"
@@ -47,7 +47,7 @@ while 1:
                 break
             else:
                 reply = re.split(',',data[:-1])
-                platformPos =''
+                platformPos ='0,0,5,0,0,1\n'
                # print(reply)
                 try:
                     x = float(reply[0])
@@ -82,5 +82,7 @@ while 1:
 
                 
                   platformPos = measuredPos.encode('utf-8')
+                  print(platformPos)
+            print(platformPos)
             client.send(platformPos)
             #client.send(platformPos)

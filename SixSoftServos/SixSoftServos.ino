@@ -24,7 +24,7 @@ String strIn = "";
 
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(115200);
   
 
   for(int i = 0; i < 6; i++) {
@@ -83,8 +83,8 @@ void loop() {
 
   for (int i = 0; i < 6; i++) {
     servos[i].update();
-   // Serial.print(servos[i].getPos()); //Print the actual position, then a comma
-  //  if (i != 5) Serial.print(",");
+    Serial.print((servos[i].getPos()-centerPos[i])/-5); //Print the actual position, then a comma
+    if (i != 5) Serial.print(",");
   }
 
 /*

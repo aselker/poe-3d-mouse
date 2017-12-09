@@ -10,6 +10,7 @@ public class networkSocket : MonoBehaviour
 {
     public String host = "localhost";
     public Int32 port = 50000;
+    public String actualPosition = "";
 
     internal Boolean socket_ready = false;
     internal String input_buffer = "";
@@ -23,12 +24,12 @@ public class networkSocket : MonoBehaviour
 
     void Update()
     {
-       string sending =  GetComponent<PlayerController>().send_data;
+        string sending =  GetComponent<PlayerController>().send_data;
         string received_data = readSocket();
         string key_stroke = Input.inputString;
 
         // Send the buffer, clean it
-        input_buffer = received_data;
+        actualPosition = received_data;
         Debug.Log("Sending: " + sending + "\r");
         writeSocket(sending);
         input_buffer = "";
@@ -43,6 +44,7 @@ public class networkSocket : MonoBehaviour
         	// print it in the log for now
             Debug.Log(received_data);
         }
+        
     }
     void FixedUpdate()
     {

@@ -135,13 +135,13 @@ if __name__ == '__main__':
       c = np.cos(radians(random()*2*t-t))
       angles = findAngles(1,2,5,0,0,1)
      
-
+      print(angles)
     
     #  print(after-before)
       if (len(angles) == 6):
         before = time()
         positions = findPosition(angles)
-        print(positions)
+        #print(positions)
         
       #  for i in range(6):
           
