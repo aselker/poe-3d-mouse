@@ -6,9 +6,9 @@ from random import *
 from pickle import dump
 from keras.models import load_model
 x_model = load_model('final_x_net.h5')
-y_model = load_model('fianl_y_net.h5')
-z_model = load_model('fianl_z_net.h5')
-a_model = load_model('fianl_a_net.h5')
+y_model = load_model('final_y_net.h5')
+z_model = load_model('final_z_net.h5')
+a_model = load_model('final_a_net.h5')
 b_model = load_model('final_b_net.h5')
 c_model = load_model('final_c_net.h5')
 models = [x_model, y_model, z_model, a_model, b_model, c_model]
@@ -105,27 +105,26 @@ def findAngles(x,y,z,ux,uy,uz):
 
 def findPosition(angles):
     angles_array = np.array([angles])
-    return [models[i].predict(angles_array) for i in range(len(models))]
+    
+    return parspos([models[i].predict(angles_array) for i in range(len(models))])
+def parspos(pos):
+  x = str(pos[0][0][0])
+  y = str(pos[1][0][0])
+  z = str(pos[2][0][0])
+  a = str(pos[3][0][0])
+  b = str(pos[4][0][0])
+  c = str(pos[5][0][0])
+  return(x+','+y+','+z+','+a+','+b+','+c);
 
 
 if __name__ == '__main__':
     # csv_data = []
     count = 0
-<<<<<<< HEAD
-    n = 10000
+    n = 1
     t = 10
-  
-=======
-    n = 200000
-    t = 30
-    x_model = load_model('x_net.h5')
-    y_model = load_model('y_net.h5')
-    z_model = load_model('z_net.h5')
-    a_model = load_model('a_net.h5')
-    b_model = load_model('b_net.h5')
-    c_model = load_model('c_net.h5')
-    models = [x_model, y_model, z_model, a_model, b_model, c_model]
->>>>>>> e1e33c2a8496978fc62368c900e31f18b9266855
+    totaltime = 0
+    posArray = []
+
     for i in range(n):
       before = time()
       x = random()*4.5-2.25
@@ -134,11 +133,25 @@ if __name__ == '__main__':
       a = np.sin(radians(random()*2*t-t))
       b = np.sin(radians(random()*2*t-t))
       c = np.cos(radians(random()*2*t-t))
-      angles = findAngles(x,y,z,a,b,c)
-      after = time()
+      angles = findAngles(1,2,5,0,0,1)
+     
+
+    
     #  print(after-before)
       if (len(angles) == 6):
-          count = count + 1
+        before = time()
+        positions = findPosition(angles)
+        print(positions)
+        
+      #  for i in range(6):
+          
+        #  print (posArray)
+       
+    #    after = time()
+    #    totaltime += (after-before)
+
+   # print (totaltime/100.0)
+    #      count = count + 1
         #   csv_data.append([x,y,z,a,b,c,angles[0],angles[1],angles[2],angles[3],angles[4],angles[5]])
     # print(str(float(count)/n) + "angles")
 
