@@ -5,6 +5,13 @@ from time import time
 from random import *
 from pickle import dump
 from keras.models import load_model
+x_model = load_model('x_net.h5')
+y_model = load_model('y_net.h5')
+z_model = load_model('z_net.h5')
+a_model = load_model('a_net.h5')
+b_model = load_model('b_net.h5')
+c_model = load_model('c_net.h5')
+models = [x_model, y_model, z_model, a_model, b_model, c_model]
 
 
 np.set_printoptions(linewidth=200)
@@ -96,7 +103,7 @@ def findAngles(x,y,z,ux,uy,uz):
 #    thetas[i] = int(round(rescale(thetas[i], radians(-70), radians(70), mins[i], maxs[i])))
   return thetas
 
-def findPosition(models, angles):
+def findPosition(angles):
     angles_array = np.array([angles])
     return [models[i].predict(angles_array) for i in range(len(models))]
 
@@ -106,13 +113,7 @@ if __name__ == '__main__':
     count = 0
     n = 10000
     t = 10
-    x_model = load_model('x_net.h5')
-    y_model = load_model('y_net.h5')
-    z_model = load_model('z_net.h5')
-    a_model = load_model('a_net.h5')
-    b_model = load_model('b_net.h5')
-    c_model = load_model('c_net.h5')
-    models = [x_model, y_model, z_model, a_model, b_model, c_model]
+  
     for i in range(n):
       before = time()
       x = random()*4.5-2.25
