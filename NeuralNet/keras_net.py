@@ -42,6 +42,6 @@ for i in range(10):
     print(Y2[i], PredValSet[i])
 
 # Save predictions
-np.savetxt("c_trainresults.csv", PredTestSet, delimiter=",")
-np.savetxt("c_valresults.csv", PredValSet, delimiter=",")
-model.save('c_net.h5')  # creates a HDF5 file 'my_model.h5'
+np.savetxt("final_c_trainresults.csv", PredTestSet, delimiter=",")
+np.savetxt("final_c_valresults.csv", PredValSet, delimiter=",")
+model.save('final_c_net.h5')  # creates a HDF5 file 'my_model.h5'
