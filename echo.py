@@ -36,6 +36,7 @@ while 1:
     while 1:
        delim = "\r\n"
        delim = delim.encode('utf-8')
+       platformPos = delim
        data = client.recv(size).rstrip( delim)
        data = data.decode('utf-8')
        #print("Data" + data)
@@ -46,6 +47,7 @@ while 1:
                 break
             else:
                 reply = re.split(',',data[:-1])
+                platformPos =''
                # print(reply)
                 try:
                     x = float(reply[0])
@@ -76,9 +78,9 @@ while 1:
                   c = float(meseuredAngles[5])
                   
                   measuredPos = findPosition([x,y,z,a,b,c])
-                  print (measuredPos)
+                  measuredPos = measuredPos + "\n"
 
                 
-                
-        
-                #client.send(reply)
+                  platformPos = measuredPos.encode('utf-8')
+            client.send(platformPos)
+            #client.send(platformPos)
