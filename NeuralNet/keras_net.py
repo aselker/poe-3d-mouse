@@ -15,15 +15,15 @@ data_size = len(dataset)
 
 # training set
 X1 = np.array(dataset[:int(data_size * .9)])[:,6:]
-Y1 = np.array(dataset[:int(data_size * .9)])[:,5]
+Y1 = np.array(dataset[:int(data_size * .9)])[:,:6]
 # validation/testing set
 X2 = np.array(dataset[int(data_size * .9):])[:,6:]
-Y2 = np.array(dataset[int(data_size * .9):])[:,5]
+Y2 = np.array(dataset[int(data_size * .9):])[:,:6]
 
 # create model
 model = Sequential()
 model.add(Dense(20, input_dim=6, init='uniform', activation='tanh'))
-model.add(Dense(1, init='uniform', activation='linear'))
+model.add(Dense(6, init='uniform', activation='linear'))
 
 # Compile model
 model.compile(loss='mse', optimizer='adam', metrics=['accuracy'])
@@ -42,6 +42,6 @@ for i in range(10):
     print(Y2[i], PredValSet[i])
 
 # Save predictions
-np.savetxt("final_c_trainresults.csv", PredTestSet, delimiter=",")
-np.savetxt("final_c_valresults.csv", PredValSet, delimiter=",")
-model.save('final_c_net.h5')  # creates a HDF5 file 'my_model.h5'
+np.savetxt("trainresults.csv", PredTestSet, delimiter=",")
+np.savetxt("valresults.csv", PredValSet, delimiter=",")
+model.save('net.h5')  # creates a HDF5 file 'my_model.h5'
