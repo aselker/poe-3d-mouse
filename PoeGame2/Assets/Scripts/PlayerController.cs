@@ -129,14 +129,17 @@ public class PlayerController : MonoBehaviour
         float targety = xyzPos[1];
         float targetz = xyzPos[2];
         targetz = targetz - 3;
+        targetz *= 2;
+        targetx *= 2;
+        targety *= -2;
 
         float z = player.transform.position[1];
         float x = player.transform.position[2];
         float y = player.transform.position[0];
 
-        float forcex = (targetx - x) * 50;
-        float forcez = (targetz - z) * 50;
-        float forcey = (targety - y) * 50;
+        float forcex = (targetx-x) * 10;
+        float forcez = (targetz - z) * 10;
+        float forcey = (targety - y) * 10;
 
         Debug.Log(xyzPos);
         player.GetComponent<Rigidbody>().AddForce(forcey, forcez, forcex);

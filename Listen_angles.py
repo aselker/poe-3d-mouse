@@ -94,7 +94,7 @@ def findAngles(x,y,z,ux,uy,uz):
   topPos = getTop(x,y,z,ux,uy,uz)
   for i in range(6):
       try:
-          thetas[i] = brenth(getLen, radians(-70), radians(70), disp = True, args =(i,topPos), xtol = 1e-3)
+          thetas[i] = brenth(getLen, radians(-70), radians(90), disp = True, args =(i,topPos), xtol = 1e-3)
           thetas[i] = degrees(thetas[i])
       except ValueError:
          return("out of range!")
