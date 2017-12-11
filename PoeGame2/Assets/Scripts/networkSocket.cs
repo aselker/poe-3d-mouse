@@ -25,13 +25,17 @@ public class networkSocket : MonoBehaviour
     void Update()
     {
         string sending =  GetComponent<PlayerController>().send_data;
+        bool can_send_data = GetComponent<PlayerController>().can_send_data;
         string received_data = readSocket();
         string key_stroke = Input.inputString;
 
         // Send the buffer, clean it
         actualPosition = received_data;
-        Debug.Log("Sending: " + sending + "\r");
-        writeSocket(sending);
+        if (can_send_data)
+        {
+            Debug.Log("Sending: " + sending + "\r");
+            writeSocket(sending);
+        }
         input_buffer = "";
            
 

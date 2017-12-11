@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Transform target;
     SerialPort serial = new SerialPort("COM6", 115200);
     public float[] stewartInput = new float[6];
+    public bool can_send_data = false;
  
 
     // Use this for initialization
@@ -23,8 +24,10 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody>();
         GameObject thePlayer = GameObject.Find("player");
         networkSocket networkScript = thePlayer.GetComponent<networkSocket>();
-       
         
+      
+
+
 
     }
     void FixedUpdate()
@@ -34,8 +37,8 @@ public class PlayerController : MonoBehaviour
        // rotating(stewartInput);
         output();
         breakjoint();
-        writeToPython(normalVector());
 
+        writeToPython(normalVector(),false);
         string actualPosition = GetComponent<networkSocket>().actualPosition;
         string[] positionVectors = actualPosition.Split(',');
         Vector3 xyzPos = new Vector3(float.Parse(positionVectors[0]), float.Parse(positionVectors[1]), float.Parse(positionVectors[2]));
@@ -60,7 +63,8 @@ public class PlayerController : MonoBehaviour
         
         if (other.rigidbody)
         {
-            
+
+            writeToPython(normalVector(),true);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var joint = gameObject.AddComponent<FixedJoint>();
@@ -167,6 +171,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 bar = transform.position;
         Vector3 bar2 = transform.eulerAngles;
+        
         data = bar[0].ToString("F2") + "," + bar[1].ToString("F2") + "," + bar[2].ToString("F2") + "," + bar2[0].ToString("F0") + "," + bar[1].ToString("F0") + "," + bar[2].ToString("F0") + "," + Time.fixedDeltaTime + "\r\n";
         //System.IO.File.AppendAllText(@"C:\Users\hyoung\Documents\_POE\POE Project\PoeGame2\data.txt", data);
 
@@ -208,12 +213,22 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    void writeToPython(Vector3 normVec)
+    void writeToPython(Vector3 normVec, bool arduino_motors_on)
     {
         Vector3 bar = player.transform.position;
         Vector3 bar2 = player.transform.eulerAngles;
+        can_send_data = true;
+        string outPutData = bar[0].ToString("F2") + "," + bar[2].ToString("F2") + "," + (bar[1] + 3).ToString("F2") + "," + normVec[0].ToString("F0") + "," + normVec[2].ToString("F0") + "," + normVec[1].ToString("F0") + ",";
 
-       string outPutData = bar[0].ToString("F2") + "," + bar[2].ToString("F2") + "," + (bar[1]+3).ToString("F2") + "," + normVec[0].ToString("F0") + "," + normVec[2].ToString("F0") + "," + normVec[1].ToString("F0") + ",";
+        if (arduino_motors_on)
+        {
+            outPutData += ",1";
+        }
+        else
+        {
+            outPutData += ",0";
+        }
+      
         send_data = outPutData;
       //  serial.WriteLine(outPutData);
     }
