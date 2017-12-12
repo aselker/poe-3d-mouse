@@ -5,8 +5,8 @@ using System.IO.Ports;
 
 public class PlayerController : MonoBehaviour
 {
-   
- 
+
+
     public float speed;
     private Rigidbody player;
     public string data = "";
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     SerialPort serial = new SerialPort("COM6", 115200);
     public float[] stewartInput = new float[6];
     public bool can_send_data = false;
- 
+
 
     // Use this for initialization
     void Start()
@@ -24,47 +24,49 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody>();
         GameObject thePlayer = GameObject.Find("player");
         networkSocket networkScript = thePlayer.GetComponent<networkSocket>();
-        
-      
+
+
 
 
 
     }
     void FixedUpdate()
     {
+
+        // moving();
        
-       // moving();
-       // rotating(stewartInput);
         output();
         breakjoint();
 
-        writeToPython(normalVector(),false);
+        writeToPython(normalVector(), false);
         string actualPosition = GetComponent<networkSocket>().actualPosition;
         string[] positionVectors = actualPosition.Split(',');
         Vector3 xyzPos = new Vector3(float.Parse(positionVectors[0]), float.Parse(positionVectors[1]), float.Parse(positionVectors[2]));
+        Vector3 abcE = new Vector3(float.Parse(positionVectors[3]), float.Parse(positionVectors[4]), float.Parse(positionVectors[5]));
         movingData(xyzPos);
+        rotating(abcE);
 
 
     }
     void Update()
     {
-       
-      
+
+
 
     }
     void LateUpdate()
     {
-        limitAngle();
-        
+        //limitAngle();
+
     }
 
     void OnCollisionStay(Collision other)
     {
-        
+
         if (other.rigidbody)
         {
 
-            writeToPython(normalVector(),true);
+            writeToPython(normalVector(), true);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var joint = gameObject.AddComponent<FixedJoint>();
@@ -75,16 +77,16 @@ public class PlayerController : MonoBehaviour
     }
     void limitAngle()
     {
-        float z =player.transform.rotation[1];
+        float z = player.transform.rotation[1];
         float x = player.transform.rotation[2];
         float y = player.transform.rotation[0];
-        float vary = (Mathf.Clamp(y, -0.10f,0.1f));
+        float vary = (Mathf.Clamp(y, -0.10f, 0.1f));
         float varz = (Mathf.Clamp(z, -0.1f, 0.1f));
         float varx = (Mathf.Clamp(x, -0.1f, 0.1f));
-        data = player.transform.rotation[0].ToString("F4")+","+player.transform.rotation[1].ToString("F4")+","+(player.transform.rotation[2]+1).ToString("F4")+","+player.transform.rotation[3].ToString("F4");
+        data = player.transform.rotation[0].ToString("F4") + "," + player.transform.rotation[1].ToString("F4") + "," + (player.transform.rotation[2] + 1).ToString("F4") + "," + player.transform.rotation[3].ToString("F4");
         print(data);
         player.transform.rotation = new Quaternion(vary, varz, varx, player.transform.rotation[3]);
-        
+
 
     }
     Vector3 normalVector()
@@ -103,12 +105,14 @@ public class PlayerController : MonoBehaviour
         perp /= perpLength;
 
         return (perp);
-    
+
 
     }
-    void rotating(float[] moredata)
+    void rotating(Vector3 moredata)
     {
-        Quaternion stewartAngles = Quaternion.Euler(moredata[3], moredata[4], moredata[5]);
+        float a = Mathf.Asin(moredata[0])/ 0.0174533F;
+        float c = Mathf.Asin(moredata[1]) / 0.0174533F;
+        Quaternion stewartAngles = Quaternion.Euler(a, 0, c);
         float targetx = stewartAngles[2];
         float targety = stewartAngles[0];
         float targetz = stewartAngles[1];
@@ -117,9 +121,9 @@ public class PlayerController : MonoBehaviour
         float x = player.transform.rotation[2];
         float y = player.transform.rotation[0];
 
-        float torquex = (targetx - x)*50;
-        float torquez = (targetz - z)*50;
-        float torquey = (targety - y)*50;
+        float torquex = (targetx - x) * 50;
+        float torquez = (targetz - z) * 50;
+        float torquey = (targety - y) * 50;
 
 
 
@@ -128,7 +132,7 @@ public class PlayerController : MonoBehaviour
     }
     void movingData(Vector3 xyzPos)
     {
-      
+
         float targetx = xyzPos[0];
         float targety = xyzPos[1];
         float targetz = xyzPos[2];
@@ -141,7 +145,7 @@ public class PlayerController : MonoBehaviour
         float x = player.transform.position[2];
         float y = player.transform.position[0];
 
-        float forcex = (targetx-x) * 10;
+        float forcex = (targetx - x) * 10;
         float forcez = (targetz - z) * 10;
         float forcey = (targety - y) * 10;
 
@@ -171,11 +175,11 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 bar = transform.position;
         Vector3 bar2 = transform.eulerAngles;
-        
+
         data = bar[0].ToString("F2") + "," + bar[1].ToString("F2") + "," + bar[2].ToString("F2") + "," + bar2[0].ToString("F0") + "," + bar[1].ToString("F0") + "," + bar[2].ToString("F0") + "," + Time.fixedDeltaTime + "\r\n";
         //System.IO.File.AppendAllText(@"C:\Users\hyoung\Documents\_POE\POE Project\PoeGame2\data.txt", data);
 
-        
+
     }
 
     void breakjoint()
@@ -194,21 +198,21 @@ public class PlayerController : MonoBehaviour
         return arduinoData;
     }
 
-    float[]  readStewartPosition(string input)
+    float[] readStewartPosition(string input)
     {
-        
+
         float[] stewartData = new float[6];
         string[] temp;
 
         temp = input.Split(',');
-        for( int i = 0; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             stewartData[i] = float.Parse(temp[i]);
         }
-       // print(stewartData);
-  //      Vector3 stewartLocation = new Vector3(stewartData[0], stewartData[1], stewartData[2]);
- //       Quaternion stewartAngles = Quaternion.Euler(stewartData[3], stewartData[4], stewartData[5]);
-        
+        // print(stewartData);
+        //      Vector3 stewartLocation = new Vector3(stewartData[0], stewartData[1], stewartData[2]);
+        //       Quaternion stewartAngles = Quaternion.Euler(stewartData[3], stewartData[4], stewartData[5]);
+
         return stewartData;
 
 
@@ -222,20 +226,17 @@ public class PlayerController : MonoBehaviour
 
         if (arduino_motors_on)
         {
-            outPutData += ",1";
+            outPutData += "1,";
         }
         else
         {
-            outPutData += ",0";
+            outPutData += "0,";
         }
-      
+
         send_data = outPutData;
-      //  serial.WriteLine(outPutData);
+        //  serial.WriteLine(outPutData);
     }
 
 
 
 }
-
-	
-

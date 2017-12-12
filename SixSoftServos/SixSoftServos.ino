@@ -16,6 +16,7 @@ const int buttonPin = 24;
 const int debounceTime = 20; //milliseconds
 long unsigned int buttonTime = 0; //The time it was last pressed
 bool buttonIsPressed = false;
+bool powerMotors;
 
 softServo servos[6];
 
@@ -25,10 +26,12 @@ String strIn = "";
 void setup() {
 
   Serial.begin(115200);
+  powerMotors = false;
   
 
   for(int i = 0; i < 6; i++) {
     servos[i].setup(enablePins[i], aPins[i], bPins[i], potPins[i], kp, ki, kd, false, false); //None are reversed, for testing purposes
+
   }
   
   servos[0].potReversed = false;
@@ -50,11 +53,10 @@ void setup() {
   servos[5].motorReversed = true;
 
   pinMode(buttonPin, INPUT_PULLUP);
-  for (int i = 0; i < 6; i++)
-  {
-  Serial.print(centerPos[i]);
-  servos[i].setPos(centerPos[i]);
+  for (int i = 0; i < 6; i++) {
+    servos[i].setPower(0);
   }
+  powerMotors = false;
 
 }
 
@@ -62,17 +64,40 @@ void loop() {
 
   while(Serial.available()) {
     char charIn = Serial.read();
+    
+    Serial.println(strIn);
     if (charIn == '\n') {
-      for (int i = 0; i < 6; i++) {
+      Serial.println("Hit");
+      for (int i = 0; i < 7; i++) {
+        
         int pos = strIn.indexOf(',');
-
+        
         if (pos == -1) { //If we didn't find a match, use the rest of the string
-          servos[i].setPos(centerPos[i] - 5*strIn.toInt());
+        //  servos[i].setPos(centerPos[i] - 5*strIn.toInt());
           break; //Can't read any more
         } //End if no match
         
         String substr = strIn.substring(0,pos); //Select the first part
-        servos[i].setPos(centerPos[i] - 5*substr.toInt());
+        Serial.println(substr);
+        if (i == 0) // mesage starts with motors on comand
+        {
+          if( substr == "1.0")
+          {
+              powerMotors = true;
+          }
+          else
+          {
+            powerMotors = false;
+          }
+        }
+       
+        if (i != 0)
+        {
+          if (powerMotors)
+            servos[i-1].setPos(centerPos[i-1] - 5*substr.toInt());
+          else
+            servos[i-1].setPower(0);
+        }
         strIn.remove(0, pos+1); //Remove that many chars, including the comma
       } //end for 
       strIn = "";

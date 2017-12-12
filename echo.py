@@ -50,6 +50,14 @@ def get_unity():
   return data
 
 def set_arduino(data):
+  m = 0
+  x = 0
+  y = 0
+  z = 0
+  a = 0
+  b = 0
+  c = 0
+  
   if data:
     if data=="quit":
       client.send("Bye!\n")
@@ -57,17 +65,18 @@ def set_arduino(data):
       
     else:
       reply = re.split(',',data[:-1])
+    print(data);
+    try:
+      (x, y, z, a, b, c, m) = tuple(float(n) for n in reply)
+      angles = findAngles(x, y, z, a, b, c)
+      reply = (str(m) +"," +str(",".join([str(angle) for angle in angles]) + "\n")).encode('utf-8')
+   
+      
+    except(ValueError):
+      print("Got invalid message from Unity")
 
-  try:
-    (x, y, z, a, b, c) = tuple(float(n) for n in reply)
-  except(ValueError):
-    print("skip")
-
-  angles = findAngles(x,y,z,a,b,c)
-  print("hit")
-  #print(angles)
-  reply = (str(",".join([str(angle) for angle in angles]) + "\n")).encode('utf-8')
-  ser.write(reply)
+    print(reply)
+    ser.write(reply)
 
     #print("Data" + data)
 
@@ -79,6 +88,7 @@ while 1:
 
   s.setblocking(1)
 
+  print ("Ready to connect to client.")
   client, address = s.accept()
   print ("Client connected.")
   answer = "Hello!\n"
@@ -87,21 +97,24 @@ while 1:
   s.setblocking(0)
 
   measuredPos = "0,0,5,0,0,1"
-  oldpos = measuredPos
+  oldPos = measuredPos
 
   while 1:
     
     data = get_unity()
-    oldpos = measuredPos
+    
+    oldPos = measuredPos
     measuredPos = get_arduino()
-
+    if not measuredPos:
+      measuredPos = oldPos
+    
    # set_arduino(data)
     
 
     try:
       client.send(measuredPos.encode('utf-8'))
     except(AttributeError):
-      print("none")
+      print("No measured positions")
    # print(measuredPos)
   # if measuredPos is not None:
   #   oldpos = measuredPos

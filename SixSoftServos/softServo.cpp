@@ -101,10 +101,11 @@ void softServo::update() {
 
   } //End if isPos
 
+
   if (motorReversed) power = -power;
 
   if (power > 0) power += deadSpot;
-  else power -= deadSpot;
+  else if (power < 0) power -= deadSpot;
 
   if (power > maxPower) power = maxPower;
   if (power < -maxPower) power = -maxPower;
