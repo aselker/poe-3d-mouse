@@ -8,6 +8,9 @@ const int bPins[] = {27, 13, 8, 12, 32, 30};
 const int potPins[] = {A10, A0, A2, A4, A6, A8};
 const int centerPos[] = {700, 770, 700, 750, 750, 750};
 int angle;
+String inputString = "";         // a String to hold incoming data
+boolean stringComplete = false;  // whether the string is complete
+
 
 
 const float kp = 10, ki= 5, kd = 3;
@@ -27,7 +30,7 @@ void setup() {
 
   Serial.begin(115200);
   powerMotors = false;
-  
+  inputString.reserve(200);
 
   for(int i = 0; i < 6; i++) {
     servos[i].setup(enablePins[i], aPins[i], bPins[i], potPins[i], kp, ki, kd, false, false); //None are reversed, for testing purposes
@@ -62,12 +65,10 @@ void setup() {
 
 void loop() {
 
-  while(Serial.available()) {
-    char charIn = Serial.read();
-    
-    Serial.println(strIn);
-    if (charIn == '\n') {
-      Serial.println("Hit");
+  
+    Serial.println(inputString );
+      if (stringComplete == true)
+      {
       for (int i = 0; i < 7; i++) {
         
         int pos = strIn.indexOf(',');
@@ -101,10 +102,8 @@ void loop() {
         strIn.remove(0, pos+1); //Remove that many chars, including the comma
       } //end for 
       strIn = "";
-    } else {
-      strIn += charIn;
     } 
-  }
+  
 
   for (int i = 0; i < 6; i++) {
     servos[i].update();
@@ -132,4 +131,17 @@ void loop() {
   
   delay(10);
 
+}
+void serialEvent() {
+  while (Serial.available()) {
+    // get the new byte:
+    char inChar = (char)Serial.read();
+    // add it to the inputString:
+    inputString += inChar;
+    // if the incoming character is a newline, set a flag so the main loop can
+    // do something about it:
+    if (inChar == '\n') {
+      stringComplete = true;
+    }
+  }
 }

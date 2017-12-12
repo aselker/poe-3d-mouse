@@ -9,7 +9,7 @@ import socket
 from Listen_angles import*
 import re
 import serial
-import time
+from time import*
 import select
 ser = serial.Serial('COM19', 115200, timeout=0)
 
@@ -65,15 +65,25 @@ def set_arduino(data):
       
     else:
       reply = re.split(',',data[:-1])
-    print(data);
-    try:
-      (x, y, z, a, b, c, m) = tuple(float(n) for n in reply)
+   # print(data);
+    
+      x = float((reply[0]))
+      y = float((reply[1]))
+      z = float((reply[2]))
+      a = float((reply[3]))
+      b = float((reply[4]))
+      c = float((reply[5]))
+      m = float(reply[6])
+
+    try:  
       angles = findAngles(x, y, z, a, b, c)
-      reply = (str(m) +"," +str(",".join([str(angle) for angle in angles]) + "\n")).encode('utf-8')
-   
+      if (len(angles) == 6):
+        reply = (str(m) +"," +"%.f"+"," +"%.f"+"," +"%.f"+"," +"%.f"+"," +"%.f"+"," +"%.f" +"\n").encode('utf-8')%(angles[0],angles[1],angles[2],angles[3],angles[4],angles[5])
+      else:
+        reply = ("0,0,5,0,0,1").encode('utf-8')
       
     except(ValueError):
-      print("Got invalid message from Unity")
+      print("Got invalid message from Unity" + data)
 
     print(reply)
     ser.write(reply)
@@ -98,19 +108,25 @@ while 1:
 
   measuredPos = "0,0,5,0,0,1"
   oldPos = measuredPos
+  last = 0
 
   while 1:
     
     data = get_unity()
     
     oldPos = measuredPos
+    before = time()
     measuredPos = get_arduino()
+    after = time()
+   # print (after-before)
     if not measuredPos:
       measuredPos = oldPos
-    
-   # set_arduino(data)
-    
+    current = clock()
+    if (current > last + 0.002):
+      set_arduino(data)
+      last = current
 
+    
     try:
       client.send(measuredPos.encode('utf-8'))
     except(AttributeError):

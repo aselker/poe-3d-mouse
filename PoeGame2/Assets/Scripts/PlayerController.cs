@@ -137,17 +137,17 @@ public class PlayerController : MonoBehaviour
         float targety = xyzPos[1];
         float targetz = xyzPos[2];
         targetz = targetz - 3;
-        targetz *= 2;
-        targetx *= 2;
-        targety *= -2;
+        targetz *= 1;
+        targetx *= 1;
+        targety *= -1;
 
         float z = player.transform.position[1];
         float x = player.transform.position[2];
         float y = player.transform.position[0];
 
-        float forcex = (targetx - x) * 10;
-        float forcez = (targetz - z) * 10;
-        float forcey = (targety - y) * 10;
+        float forcex = (targetx - x) * 100;
+        float forcez = (targetz - z) * 100;
+        float forcey = (targety - y) * 100;
 
         Debug.Log(xyzPos);
         player.GetComponent<Rigidbody>().AddForce(forcey, forcez, forcex);
@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
         Vector3 bar = player.transform.position;
         Vector3 bar2 = player.transform.eulerAngles;
         can_send_data = true;
-        string outPutData = bar[0].ToString("F2") + "," + bar[2].ToString("F2") + "," + (bar[1] + 3).ToString("F2") + "," + normVec[0].ToString("F0") + "," + normVec[2].ToString("F0") + "," + normVec[1].ToString("F0") + ",";
+        string outPutData = (bar[0]).ToString("F2") + "," + (bar[2]).ToString("F2") + "," + ((bar[1] + 3)).ToString("F2") + "," + normVec[0].ToString("F0") + "," + normVec[2].ToString("F0") + "," + normVec[1].ToString("F0")+",";
 
         if (arduino_motors_on)
         {
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
         {
             outPutData += "0,";
         }
-
+        
         send_data = outPutData;
         //  serial.WriteLine(outPutData);
     }
